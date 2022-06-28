@@ -1,0 +1,22 @@
+@import 'normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --purple-primary: #7200a1;
+    --dark-background: #1e1e1e;
+    --dark-light-background: #292929;
+    --red: #ff0a0a;
+    --white: #fff;
+    --gray: #a0a0a0;
+}
+
+html {
+    font-size: 65.5%;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    text-rendering: optimizeSpeed;
+}
