@@ -1,0 +1,60 @@
+@import './base.css';
+
+.zing-app {
+    width: 100%;
+}
+
+/* Sidebar */
+.sidebar {
+    background: var(--dark-light-background);
+    position: relative;
+    height: 100%;
+    width: 240px;
+    z-index: 100;
+}
+
+.sidebar_header {
+    height: var(--header-height);
+    padding: 0 25px 0 28px;
+}
+
+.logo {
+    width: 120px;
+    height: 40px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+/* Content */
+.header {
+    height: var(--header-height);
+    padding: 0 60px;
+}
+
+.header-left-btn {
+    background: none;
+    outline: none;
+    border: none;
+    font-size: 25px;
+    padding: 0;
+    margin-right: 15px;
+    color: var(--gray-text);
+}
+
+.header-left-btn:focus {
+    outline: none;
+}
+
+.search {
+    width: 540px;
+    height: 40px;
+    background-color: var(--dark-light-background);
+    border-radius: 20px;
+}
+
+.content {
+    width: 100%;
+    background: var(--dark-background);
+    left: 240px;
+}

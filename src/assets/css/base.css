@@ -5,9 +5,11 @@
     --purple-primary: #7200a1;
     --dark-background: #1e1e1e;
     --dark-light-background: #292929;
+    --gray-text: #5e5e5e;
     --red: #ff0a0a;
     --white: #fff;
     --gray: #a0a0a0;
+    --header-height: 70px;
 }
 
 html {
@@ -19,4 +21,25 @@ body {
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed;
+}
+
+/* Flex and Grid */
+.dflex {
+    display: flex;
+}
+
+.al-center {
+    display: flex;
+    align-items: center;
+}
+
+.grid-center {
+    display: grid;
+    place-items: center;
+}
+
+.dflex-center {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
