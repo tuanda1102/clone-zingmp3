@@ -10,8 +10,8 @@ export default function Header() {
                 <button className="header-left-btn btn-forward al-center">
                     <ion-icon name="arrow-forward-outline"></ion-icon>
                 </button>
-                <div className="search al-center">
-                    <span className="search-icon">
+                <div className="search dflex-center">
+                    <span className="search-icon al-center">
                         <ion-icon name="search-outline"></ion-icon>
                     </span>
                     <input type="text" placeholder="Nhập tên bài hát, nghệ sĩ hoặc MV..." />
@@ -19,16 +19,16 @@ export default function Header() {
             </div>
 
             <div className="header-right dflex-center">
-                <div className="header-right-item">
+                <div className="header-right-item dflex-center">
                     <ion-icon name="diamond-outline"></ion-icon>
                 </div>
-                <div className="header-right-item">
+                <div className="header-right-item dflex-center">
                     <ion-icon name="download-outline"></ion-icon>
                 </div>
-                <div className="header-right-item">
+                <div className="header-right-item dflex-center">
                     <ion-icon name="settings-outline"></ion-icon>
                 </div>
-                <div className="header-right-item avatar">
+                <div className="header-right-item dflex-center avatar">
                     <ion-icon name="person-outline"></ion-icon>
                 </div>
             </div>

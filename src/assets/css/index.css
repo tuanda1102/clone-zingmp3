@@ -8,9 +8,13 @@
 .sidebar {
     background: var(--dark-light-background);
     position: relative;
-    height: 100%;
+    height: calc(100vh - var(--footer-height));
     width: 240px;
     z-index: 100;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
 }
 
 .sidebar_header {
@@ -26,10 +30,94 @@
     background-size: contain;
 }
 
-/* Content */
+.nav-menu {
+    border-bottom: 1px solid var(--search-text);
+    padding-bottom: 10px;
+}
+
+.navbar-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.sidebar-item.active {
+    background-color: var(--active-color);
+    border-left: 3px solid var(--primary);
+}
+
+.sidebar-item.active a {
+    color: var(--white);
+}
+
+.sidebar-item a {
+    padding: 7px 25px;
+    text-decoration: none;
+    display: flex;
+    color: var(--gray-text);
+    width: 100%;
+    align-items: center;
+}
+
+.sidebar-item a:hover {
+    color: var(--white);
+}
+
+.sidebar-icon {
+    font-size: 24px;
+    display: flex;
+    padding-right: 10px;
+}
+
+.sidebar-icon ion-icon {
+    margin: auto;
+}
+
+.nav-title {
+    font-size: 13px;
+    font-weight: 700;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.nav-divide {
+    padding: 10px 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.sidebar-library-personal h4 {
+    color: var(--white);
+    padding: 20px 0 7px 25px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.sidebar-footer {
+    position: fixed;
+    height: var(--footer-sidebar);
+    bottom: var(--footer-height);
+    background-color: var(--dark-light-background);
+    z-index: 10;
+}
+
+/* HEADER */
 .header {
+    background: var(--dark-background);
     height: var(--header-height);
     padding: 0 60px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 240px;
 }
 
 .header-left-btn {
@@ -49,12 +137,99 @@
 .search {
     width: 540px;
     height: 40px;
-    background-color: var(--dark-light-background);
+    background-color: var(--light-blue);
     border-radius: 20px;
 }
 
-.content {
+.search-icon {
+    font-size: 20px;
+    padding: 0 10px;
+    color: var(--search-text);
+}
+
+.search input {
     width: 100%;
+    flex: 1;
+    background: none;
+    outline: none;
+    font-size: 14px;
+    background-clip: padding-box;
+    height: 34px;
+    padding: 5px 0;
+    line-height: 34px;
+    border: 0;
+    color: var(--search-text);
+}
+
+.header-right-item {
+    width: 40px;
+    height: 40px;
+    color: var(--gray-text);
+    font-size: 20px;
+    background-color: var(--dark-light-background);
+    margin-left: 10px;
+    border-radius: 50%;
+}
+
+.header-right-item ion-icon {
+    margin: auto;
+}
+
+/* CONTENT */
+.content {
+    height: 2000px;
+    margin: var(--header-height) 0 0px 240px;
+    padding: 0 60px;
     background: var(--dark-background);
-    left: 240px;
+}
+
+/* FOOTER */
+.footer {
+    height: var(--footer-height);
+    background-color: var(--footer-color);
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    z-index: 100;
+}
+
+/* HOME */
+.home {
+    width: 100%;
+}
+
+.home-slider {
+    margin: 30px 0;
+    position: relative;
+}
+
+.home-slider-item img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.slide-btn {
+    position: absolute;
+    color: var(--white);
+    width: 100%;
+    height: 100%;
+    font-size: 40px;
+    padding: 0 25px;
+}
+
+.slide-btn-item {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    background-color: rgb(255, 255, 255, 0.3);
+    border-radius: 50%;
+    display: none;
+}
+
+.slide-btn-item ion-icon {
+    margin: auto;
+}
+
+.slide-btn:hover > .slide-btn-item {
+    display: block;
 }
