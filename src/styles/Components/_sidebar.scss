@@ -1,0 +1,65 @@
+.sidebar {
+    position: fixed;
+    background: $color-bg-dark-1;
+    height: calc(100vh - $height-1);
+    width: $width-0;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    .sidebar_header {
+        display: flex;
+        align-items: center;
+        height: $height-0;
+        padding: 0 25px 0 28px;
+        .logo {
+            display: inline-block;
+            width: 120px;
+            height: $height-3;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+    }
+    .navbar-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .nav-menu {
+            border-bottom: 1px solid $color-blue-3;
+            padding-bottom: $pd-4;
+            .sidebar-item {
+                @extend .sidebar-item;
+            }
+        }
+        .nav-divide {
+            padding: $pd-4 0;
+            height: 100%;
+            overflow: hidden;
+            border-bottom: 1px solid $color-blue-3;
+            .sidebar-item {
+                @extend .sidebar-item;
+            }
+            .sidebar-library-personal {
+                h4 {
+                    color: $color-white-0;
+                    padding: $pd-2 0 $pd-1 $pd-2;
+                    font-size: $fs-6;
+                    font-weight: $fw-0;
+                }
+                .library-personal-list {
+                    .sidebar-item {
+                        @extend .sidebar-item;
+                    }
+                }
+            }
+        }
+    }
+    .sidebar-footer {
+        position: fixed;
+        height: $height-2;
+        bottom: $height-1;
+        background-color: $color-bg-dark-1;
+        z-index: 10;
+        @extend .sidebar-item;
+    }
+}

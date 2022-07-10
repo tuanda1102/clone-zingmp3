@@ -1,0 +1,88 @@
+// Color
+$color-primary: #3460f5;
+$color-bg-dark-0: #1d375a;
+$color-bg-dark-1: #294162;
+$color-bg-dark-2: #172c48;
+$color-blue-0: #6e8ffb;
+$color-blue-1: #344b6b;
+$color-blue-2: #3f5472;
+$color-blue-3: #33405c;
+$color-gray-0: #eee;
+$color-gray-1: #dadada;
+$color-gray-2: #d8d8d8;
+$color-gray-3: #8e9bad;
+$color-white-0: #fff;
+$color-white-1: #f7f7f7;
+$color-hover-btn: rgba(255, 255, 255, 0.2);
+$color-bg-transparent: rgba(255, 255, 255, 0.1);
+$linear-gradient-bg: linear-gradient(180deg, rgba(34, 68, 114, 0.9), rgba(36, 69, 114, 0.9));
+
+// Font-size
+$fs-0: 14px;
+$fs-1: 13px;
+$fs-2: 24px;
+$fs-3: 18px;
+$fs-4: 20px;
+$fs-5: 28px;
+$fs-6: 12px;
+$fs-7: 16px;
+$fs-8: 40px;
+
+// font-weight
+$fw-0: 700;
+$fw-1: 400;
+$fw-2: 500;
+
+// line-height
+$line-height-0: normal;
+$line-height-1: 1.33;
+$line-height-2: 1.36;
+
+// Margin
+$mg-0: 70px;
+$mg-1: 15px;
+$mg-2: 20px;
+$mg-3: 10px;
+$mg-4: 8px;
+$mg-5: 30px;
+$mg-6: 50px;
+$mg-7: 40px;
+$mg-8: 60px;
+$mg-9: 4px;
+
+// Padding
+$pd-0: 25px;
+$pd-1: 7px;
+$pd-2: 20px;
+$pd-3: 14px;
+$pd-4: 10px;
+$pd-5: 5px;
+$pd-6: 30px;
+
+// Border radius
+$radius-0: 20px;
+$radius-1: 50%;
+$radius-2: 8px;
+$radius-3: 5px;
+
+// Height
+$height-0: 70px;
+$height-1: 90px;
+$height-2: 50px;
+$height-3: 40px;
+$height-4: 34px;
+$height-5: 84px;
+$height-6: 68px;
+
+// Width
+$width-0: 240px;
+$width-1: 540px;
+$width-2: 30%;
+
+// Breakpoints
+$xs: 0;
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1400px;

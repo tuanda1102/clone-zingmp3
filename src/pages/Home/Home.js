@@ -1,27 +1,19 @@
 import React from 'react';
-
+import HomeChart from 'src/components/HomeComponents/HomeChart/HomeChart';
+import HomeFooter from 'src/components/HomeComponents/HomeFooter/HomeFooter';
+import HomeTop from 'src/components/HomeComponents/HomeTop/HomeTop';
+import NewMusics from 'src/components/HomeComponents/NewMusics/NewMusics';
+import Slider from 'src/components/HomeComponents/Slider/Slider';
+import TodayChoice from 'src/components/HomeComponents/TodayChoice/TodayChoice';
 export default function Home() {
     return (
         <div className="home">
-            <div className="home-slider row">
-                <div className="col-4 home-slider-item">
-                    <img src={require('~/assets/images/home-slider/img1.jpg')} alt="img1" />
-                </div>
-                <div className="col-4 home-slider-item">
-                    <img src={require('~/assets/images/home-slider/img2.jpg')} alt="img1" />
-                </div>
-                <div className="col-4 home-slider-item">
-                    <img src={require('~/assets/images/home-slider/img3.jpg')} alt="img1" />
-                </div>
-                <div className="slide-btn dflex-center">
-                    <div className="slide-btn-item slide-btn-back">
-                        <ion-icon name="chevron-back-outline"></ion-icon>
-                    </div>
-                    <div className="slide-btn-item slide-btn-forward">
-                        <ion-icon name="chevron-forward-outline"></ion-icon>
-                    </div>
-                </div>
-            </div>
+            <Slider />
+            <TodayChoice />
+            <NewMusics />
+            <HomeChart />
+            <HomeTop />
+            <HomeFooter />
         </div>
     );
 }

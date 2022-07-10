@@ -1,0 +1,42 @@
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    position: relative;
+    border-left: 3px solid transparent;
+    + .active {
+        background-color: $color-blue-2;
+        border-left: 3px solid $color-primary;
+        a {
+            color: $color-white-0;
+        }
+    }
+    a {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: $pd-1 25px;
+        text-decoration: none;
+        color: $color-gray-1;
+        &:hover {
+            color: $color-white-0;
+        }
+    }
+    .sidebar-item-link {
+        .sidebar-icon {
+            font-size: $fs-2;
+            display: flex;
+            padding-right: $pd-4;
+            .sidebar-icon-item {
+                margin: auto;
+            }
+        }
+        .nav-title {
+            position: relative;
+            font-size: $fs-1;
+            font-weight: $fw-0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+    }
+}

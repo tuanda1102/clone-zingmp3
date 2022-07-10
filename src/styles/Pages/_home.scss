@@ -1,0 +1,268 @@
+.home {
+    margin-bottom: $height-1;
+    .home-slider {
+        position: relative;
+        .home-slider-item {
+            margin: $mg-5 0 $mg-2 0;
+            z-index: 10;
+            img {
+                width: 100%;
+                border-radius: $radius-2;
+            }
+        }
+        .slider-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            color: $color-white-0;
+            height: 100%;
+            padding: 0 40px;
+            .slider-btn-item {
+                width: 60px;
+                height: 60px;
+                background-color: $color-hover-btn;
+                border-radius: $radius-1;
+                display: grid;
+                place-items: center;
+                font-size: $fs-8;
+                z-index: 20;
+                cursor: pointer;
+                &:hover {
+                    opacity: 0.7;
+                }
+            }
+            display: none;
+        }
+        &:hover .slider-btn {
+            display: flex;
+        }
+    }
+    .title-list {
+        font-size: $fs-4;
+        color: $color-white-0;
+        font-weight: $fw-0;
+        margin-bottom: 16px;
+    }
+    .home-row-item {
+        margin-top: $mg-2;
+    }
+    .card-item {
+        .card-item-top {
+            .card-img {
+                overflow: hidden;
+                position: relative;
+                border-radius: $radius-3;
+                img {
+                    transition: 0.6s all ease-in-out;
+                    width: 100%;
+                    object-fit: cover;
+                }
+                &:hover {
+                    .card-overley {
+                        display: flex;
+                    }
+                    img {
+                        transform: scale(1.1);
+                    }
+                }
+                .card-overley {
+                    // border-radius: $radius-2;
+                    position: absolute;
+                    background-color: rgba(0, 0, 0, 0.4);
+                    @include flexCenter();
+                    width: 100%;
+                    height: 100%;
+                    color: $color-white-0;
+                    top: 0;
+                    font-size: $fs-2;
+                    display: none;
+                    .card-overley-icon {
+                        padding: $pd-5;
+                        @include centerItemWithMargin;
+                        &:hover {
+                            background-color: $color-hover-btn;
+                            border-radius: $radius-1;
+                        }
+                    }
+                    .card-play {
+                        padding: $pd-4;
+                        border: 1px solid $color-white-0;
+                        border-radius: $radius-1;
+                        @include centerItemWithMargin;
+                        &:hover {
+                            opacity: 0.7;
+                        }
+                    }
+                    .card-overley-btn {
+                        z-index: 10;
+                    }
+                }
+            }
+        }
+        .card-item-bottom {
+            margin-top: $mg-4;
+            .card-title {
+                text-decoration: none;
+                margin-bottom: $mg-9;
+                @include fontSet($fs-0, $fw-0, $line-height-2, $color-white-0);
+                &:hover {
+                    color: $color-blue-2;
+                }
+            }
+            .card-desc {
+                @include fontSet($fs-0, $fw-2, $line-height-1, $color-gray-3);
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                cursor: default;
+            }
+        }
+    }
+    .home-chart {
+        padding: $pd-2 $pd-2 $pd-6 $pd-2;
+        border-radius: $radius-0;
+        background: $linear-gradient-bg,
+            url('https://zjs.zmdcdn.me/zmp3-desktop/releases/v1.6.40/static/media/bg-chart.fd766403.jpg') top/cover
+                no-repeat;
+        .home-chart-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: $mg-2;
+            a {
+                text-decoration: none;
+                @include fontSet($fs-5, $fw-0, $line-height-0, $color-white-0);
+                &:hover {
+                    color: $color-primary;
+                }
+                margin-right: $mg-3;
+            }
+            button {
+                background: $color-white-0;
+                color: $color-primary;
+                border: none;
+                border-radius: $radius-1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 28px;
+                height: 28px;
+            }
+        }
+        .home-chart-content {
+            max-height: 320px;
+            .home-chart-left {
+                text-align: center;
+                .home-chart-list {
+                    .chart-song-item {
+                        @include flexCenter;
+                        height: $height-5;
+                        margin: $mg-3 0;
+                        padding: 0 $pd-3;
+                        background-color: $color-bg-transparent;
+                        border-radius: $radius-3;
+                        .song-item-left {
+                            @include flexCenter;
+                            .song-item-num {
+                                width: 22px;
+                                font-size: $fs-5 + 4px;
+                                color: transparent;
+                                font-weight: $fw-0;
+                                -webkit-text-stroke: 1px $color-primary;
+                            }
+                            .media {
+                                @include flexCenter;
+                                padding: 0 $pd-4;
+                                .media-thumb {
+                                    padding-right: $pd-4;
+                                    img {
+                                        width: 60px;
+                                        height: 60px;
+                                        object-fit: cover;
+                                        border-radius: $radius-3;
+                                    }
+                                }
+                                .media-content {
+                                    .media-content-title {
+                                        @include fontSet($fs-0, $fw-0, $line-height-0, $color-white-0);
+                                    }
+                                    .media-content-subtitle {
+                                        @include fontSet($fs-6, $fw-1, $line-height-1, $color-gray-3);
+                                    }
+                                }
+                            }
+                        }
+                        .song-item-right {
+                            @include fontSet($fs-7, $fw-0, $line-height-0, $color-white-0);
+                        }
+                        &:hover {
+                            background-color: $color-hover-btn;
+                        }
+                    }
+                }
+                button {
+                    &:hover {
+                        background-color: $color-hover-btn;
+                    }
+                }
+            }
+            .home-chart-right {
+                position: relative;
+                height: 320px;
+            }
+        }
+    }
+    .charts-country {
+        margin-top: $mg-2;
+        .charts-country-item {
+            .charts-country-item-img {
+                width: 100%;
+                img {
+                    width: 100%;
+                    border-radius: $radius-2;
+                }
+            }
+        }
+    }
+    .home-footer {
+        padding: $pd-6 0 $pd-6 0;
+        h3 {
+            font-size: $fs-6;
+            font-weight: $fw-0;
+            color: $color-gray-2;
+            text-align: center;
+            margin-bottom: $mg-2;
+        }
+        .home-footer-list {
+            justify-content: center;
+            .home-footer-list-item {
+                position: relative;
+                height: $height-6;
+                margin: $mg-3 0;
+                border-radius: $radius-2;
+                overflow: hidden;
+                .home-footer-img {
+                    background-color: $color-white-1;
+                    line-height: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+
+                    img {
+                        object-fit: contain;
+                        max-width: 90%;
+                        max-height: 80%;
+                        width: auto;
+                    }
+                }
+            }
+        }
+    }
+}

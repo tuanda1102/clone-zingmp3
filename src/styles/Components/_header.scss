@@ -1,0 +1,77 @@
+.header {
+    @include flexCenter;
+    position: fixed;
+    background: $color-bg-dark-0;
+    height: $height-0;
+    padding: 0 $mg-8;
+    top: 0;
+    right: 0;
+    left: $width-0;
+    z-index: 100000;
+    .header-left {
+        @include flexCenter;
+        .header-left-btn {
+            display: flex;
+            align-items: center;
+            background: none;
+            outline: none;
+            border: none;
+            font-size: $fs-4;
+            padding: 0;
+            margin-right: $mg-1;
+            color: $color-blue-2;
+            &:focus {
+                outline: none;
+            }
+        }
+        .search {
+            @include flexCenter;
+
+            width: $width-1;
+            height: $height-3;
+            background-color: $color-blue-1;
+            border-radius: $radius-0;
+            color: $color-gray-1;
+            .search-icon {
+                display: flex;
+                align-items: center;
+                font-size: $mg-2;
+                padding: 0 $pd-4;
+                color: $color-gray-0;
+            }
+            input {
+                width: 100%;
+                flex: 1;
+                background: transparent;
+                outline: transparent;
+                background-clip: padding-box;
+                height: $height-4;
+                padding: $pd-5 0;
+                line-height: 34px;
+                border: 0;
+                color: $color-gray-0;
+                ::placeholder {
+                    color: $color-gray-0;
+                }
+            }
+        }
+    }
+
+    .header-right {
+        @include flexCenter;
+        .header-right-item {
+            @include flexCenter;
+            width: 40px;
+            height: 40px;
+            color: $color-gray-1;
+            font-size: $fs-4;
+            background-color: $color-blue-2;
+            margin-left: $mg-3;
+            border-radius: $radius-1;
+            i {
+                display: flex;
+                margin: auto;
+            }
+        }
+    }
+}

@@ -1,0 +1,17 @@
+@mixin flexCenter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin centerItemWithMargin {
+    display: flex;
+    margin: auto;
+}
+
+@mixin fontSet($fontSize, $fontWeight, $lineHeight, $color) {
+    font-size: $fontSize;
+    font-weight: $fontWeight;
+    line-height: $lineHeight;
+    color: $color;
+}
