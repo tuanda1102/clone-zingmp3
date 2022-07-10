@@ -1,15 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-export default function CardItem(props) {
+export default function CardItem({ title, link, sortDescription, thumbnail }) {
     return (
         <div className="card-item col">
             <div className="card-item-top">
                 <a href="/">
                     <div className="card-img">
-                        <img
-                            src="https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/c/5/6/f/c56f9e842b6e4255759c9f589172bc63.jpg"
-                            alt="choose-im"
-                        />
+                        <img src={thumbnail} alt={title} />
                         <div className="card-overley">
                             <i className="card-overley-btn card-overley-icon">
                                 <ion-icon name="heart-outline"></ion-icon>
@@ -26,11 +24,11 @@ export default function CardItem(props) {
             </div>
             <div className="card-item-bottom">
                 <div>
-                    <a className="card-title" href="/">
-                        Nhạc Mới Mỗi Ngày
+                    <a href="/" className="card-title">
+                        {title}
                     </a>
                 </div>
-                <p className="card-desc">Muốn đi nhanh thì đi một mình, muốn đi xa thì hãy đi cùng nhau</p>
+                <p className="card-desc">{sortDescription}</p>
             </div>
         </div>
     );

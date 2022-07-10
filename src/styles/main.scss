@@ -7,17 +7,17 @@
 @import './Base/reset';
 
 // Components
-@import './Components/header';
-@import './Components/footer';
-@import './Components/sidebar';
-@import './Components/chart';
+@import '../components/Header/header';
+@import '../components/Footer/footer';
+@import '../components/Sidebar/sidebar';
+@import '../components/ZingChart/chart';
 
 // Layout
 @import './Layouts/contents';
 
 // Page
-@import './Pages/home';
-@import './Pages/mymusic';
-@import './Pages/zingchart';
+@import '../pages/Home/home';
+@import '../pages/MyMusic/mymusic';
+@import '../pages/ZingChartPage/zingchart';
 
 // Theme

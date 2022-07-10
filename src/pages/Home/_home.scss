@@ -102,9 +102,11 @@
         }
         .card-item-bottom {
             margin-top: $mg-4;
+
             .card-title {
                 text-decoration: none;
                 margin-bottom: $mg-9;
+                @include lineClamp(1);
                 @include fontSet($fs-0, $fw-0, $line-height-2, $color-white-0);
                 &:hover {
                     color: $color-blue-2;
@@ -112,11 +114,7 @@
             }
             .card-desc {
                 @include fontSet($fs-0, $fw-2, $line-height-1, $color-gray-3);
-                display: -webkit-box;
-                -webkit-line-clamp: 2;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-                text-overflow: ellipsis;
+                @include lineClamp(2);
                 cursor: default;
             }
         }
