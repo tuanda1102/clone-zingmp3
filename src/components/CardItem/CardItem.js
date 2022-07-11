@@ -1,13 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-export default function CardItem({ title, link, sortDescription, thumbnail }) {
+export default function CardItem({ title, link, sortDescription, thumbnailM }) {
     return (
         <div className="card-item col">
             <div className="card-item-top">
                 <a href="/">
                     <div className="card-img">
-                        <img src={thumbnail} alt={title} />
+                        <img src={thumbnailM} alt={title} />
                         <div className="card-overley">
                             <i className="card-overley-btn card-overley-icon">
                                 <ion-icon name="heart-outline"></ion-icon>

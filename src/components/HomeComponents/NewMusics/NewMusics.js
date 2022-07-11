@@ -1,5 +1,6 @@
 import React from 'react';
 import CardItem from 'src/components/CardItem/CardItem';
+import { useSelector } from 'react-redux';
 
 export default function NewMusics() {
     return (
