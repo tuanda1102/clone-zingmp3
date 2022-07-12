@@ -6,7 +6,7 @@ export const bannerHomeSelector = (state) => {
     return state.homePage.data.banner;
 };
 
-export const statusLoadingSelector = (state) => {
+export const statusLoadingHomeSelector = (state) => {
     return state.homePage.status;
 };
 

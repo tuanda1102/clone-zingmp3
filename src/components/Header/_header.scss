@@ -1,13 +1,13 @@
 .header {
     @include flexCenter;
     position: fixed;
-    background: $color-bg-dark-0;
+    background: transparent;
     height: $height-0;
     padding: 0 $mg-8;
     top: 0;
     right: 0;
     left: $width-0;
-    z-index: 100000;
+    z-index: 10000;
     .header-left {
         @include flexCenter;
         .header-left-btn {

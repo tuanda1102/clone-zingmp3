@@ -1,0 +1,83 @@
+.zingchart-page {
+    .chart-wrapper {
+        position: relative;
+        padding: 110px $pd-8 0 $pd-8;
+        .background-chart {
+            .bg-blur {
+                background: url('https://zjs.zmdcdn.me/zmp3-desktop/releases/v1.7.0/static/media/bg-chart.fd766403.jpg')
+                    top/cover no-repeat;
+                -webkit-filter: grayscale(1);
+                filter: grayscale(1);
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+            }
+            .bg-alpha {
+                z-index: 0;
+                background-image: linear-gradient(180deg, hsla(0, 0%, 100%, 0) 37%, $color-bg-dark-0);
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+            }
+            .bg-alpha-1 {
+                opacity: 0.9;
+                z-index: 0;
+                background-image: linear-gradient(180deg, $color-bg-dark-0, $color-bg-dark-0);
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+            }
+        }
+        .wrapper-header {
+            position: relative;
+            color: $color-white-0;
+            display: flex;
+            align-items: center;
+            margin-bottom: $mg-7;
+            h2 {
+                font-size: $fs-8;
+                font-weight: $fw-0;
+                margin: 0;
+            }
+            button {
+                margin-left: $mg-9;
+                background: $color-primary;
+                color: $color-white-0;
+                border: none;
+                border-radius: $radius-1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                &:hover {
+                    opacity: 0.8;
+                }
+            }
+        }
+    }
+    .list {
+        padding: 0 $pd-8;
+        .chart-song-item {
+            height: 60px;
+            padding: 10px;
+            .item-media {
+                @include flexCenter;
+                .media-left {
+                    display: flex;
+                    align-items: center;
+                    .song-prefix {
+                        width: 60px;
+                        margin-right: $mg-9;
+                    }
+                }
+            }
+        }
+    }
+}

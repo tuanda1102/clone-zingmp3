@@ -1,17 +1,16 @@
 import React, { useEffect } from 'react';
-import { Provider, useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import HomeChart from 'src/components/HomeComponents/HomeChart/HomeChart';
 import HomeFooter from 'src/components/HomeComponents/HomeFooter/HomeFooter';
 import HomeTop from 'src/components/HomeComponents/HomeTop/HomeTop';
-import NewMusics from 'src/components/HomeComponents/NewMusics/NewMusics';
 import TodayChoice from 'src/components/HomeComponents/TodayChoice/TodayChoice';
 import Banner from 'src/components/HomeComponents/Slider/Banner';
 import { getHome } from './homeSlice';
-import { statusLoadingSelector } from 'src/redux/selectors/homeSelectors';
+import { statusLoadingHomeSelector } from 'src/redux/selectors/homeSelectors';
 import NewRelease from 'src/components/HomeComponents/NewRelease/NewRelease';
 
 export default function Home() {
-    const loadingStatus = useSelector(statusLoadingSelector);
+    const loadingStatus = useSelector(statusLoadingHomeSelector);
 
     const dispatch = useDispatch();
     useEffect(() => {
@@ -34,7 +33,7 @@ export default function Home() {
                     <Banner />
                     <TodayChoice />
                     {/* <NewMusics /> */}
-                    <HomeChart />
+                    <HomeChart height="320px" />
                     <HomeTop />
                     <NewRelease />
                     <HomeFooter />

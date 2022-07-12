@@ -36,6 +36,5 @@ export const homeSlice = createSlice({
 
 export const getHome = createAsyncThunk('home/getHome', async () => {
     const res = await axios.get(`${DOMAIN}/api/home?page=/`);
-    const data = res.data.data.items;
-    return data;
+    return res.data.data.items;
 });
