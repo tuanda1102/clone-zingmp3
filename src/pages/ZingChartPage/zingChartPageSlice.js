@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { DOMAIN } from 'src/constants/constants';
 
-export const zingChartSlice = createSlice({
+export const zingChartPageSlice = createSlice({
     name: 'zingChart',
     initialState: {
         status: 'idle',

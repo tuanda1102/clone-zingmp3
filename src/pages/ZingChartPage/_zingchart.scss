@@ -63,11 +63,17 @@
         }
     }
     .list {
+        margin: $pd-6 0;
         padding: 0 $pd-8;
         .chart-song-item {
-            height: 60px;
-            padding: 10px;
+            border-bottom: 1px solid $color-hover-btn;
+            border-radius: $radius-3;
+            &:hover {
+                background-color: $color-hover-btn;
+            }
             .item-media {
+                height: 60px;
+                padding: 10px;
                 @include flexCenter;
                 .media-left {
                     display: flex;
@@ -75,7 +81,52 @@
                     .song-prefix {
                         width: 60px;
                         margin-right: $mg-9;
+                        .prefix-number {
+                            font-size: $fs-9;
+                            font-weight: $fw-0;
+                            color: transparent;
+                            -webkit-text-stroke: 1px #3460f5;
+                        }
                     }
+                    .song-thumb {
+                        width: 40px;
+                        margin-right: $mg-3;
+                        img {
+                            width: 100%;
+                        }
+                    }
+                    .song-info {
+                        .song-title {
+                            color: $color-white-0;
+                            font-weight: $fw-0;
+                            margin: 0;
+                        }
+                        .song-subtitle {
+                            a {
+                                text-decoration: none;
+                                color: $color-gray-3;
+                                &:hover {
+                                    text-decoration: underline;
+                                    color: $color-primary;
+                                }
+                            }
+                        }
+                    }
+                }
+                .media-content {
+                    span {
+                        &:hover {
+                            text-decoration: underline;
+                            color: $color-primary;
+                            cursor: pointer;
+                        }
+                    }
+                }
+
+                .media-content,
+                .media-right {
+                    color: $color-gray-4;
+                    font-size: $fs-6;
                 }
             }
         }

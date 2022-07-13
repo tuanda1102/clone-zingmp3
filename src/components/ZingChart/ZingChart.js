@@ -2,22 +2,50 @@ import React, { useEffect, useState } from 'react';
 import { Chart as ChartJS, registerables } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import 'chartjs-adapter-moment';
-import { useSelector } from 'react-redux';
-import { chartDataSelector } from 'src/redux/selectors/zingChartPageSelector';
+import { useDispatch, useSelector } from 'react-redux';
+import { chartDataSelector } from 'src/redux/selectors/chartSelector';
+import { getChart } from './zingChartSlice';
 ChartJS.register(...registerables);
 
 export default function ZingChart(props) {
-    const [itemsChart, setItemsChart] = useState({});
+    const dispatch = useDispatch();
+    const [times, setTimes] = useState([]);
+    const [firstLine, setFirstLine] = useState([]);
+    const [secondLine, setSecondLine] = useState([]);
+    const [threeLine, setThreeLine] = useState([]);
     const dataChart = useSelector(chartDataSelector);
-    const times = itemsChart[Object.keys(itemsChart)[0]]?.map((item) => {
-        return item.time;
-    });
+
+    console.log('render');
+
+    const itemsChart = dataChart.data.chart?.items;
+    useEffect(() => {
+        dispatch(getChart());
+    }, []);
 
     useEffect(() => {
-        if (dataChart) {
-            setItemsChart(dataChart.chart.items);
+        if (itemsChart) {
+            setTimes(
+                itemsChart[Object.keys(itemsChart)[0]]?.map((item) => {
+                    return item.time;
+                }),
+            );
+            setFirstLine(
+                itemsChart[Object.keys(itemsChart)[0]]?.map((item) => {
+                    return item.counter;
+                }),
+            );
+            setSecondLine(
+                itemsChart[Object.keys(itemsChart)[1]]?.map((item) => {
+                    return item.counter;
+                }),
+            );
+            setThreeLine(
+                itemsChart[Object.keys(itemsChart)[2]]?.map((item) => {
+                    return item.counter;
+                }),
+            );
         }
-    }, []);
+    }, [itemsChart]);
 
     const options = {
         responsive: true,
@@ -74,10 +102,7 @@ export default function ZingChart(props) {
         labels: times,
         datasets: [
             {
-                data:
-                    itemsChart[Object.keys(itemsChart)[0]]?.map((item) => {
-                        return item.counter;
-                    }) || [],
+                data: firstLine,
                 fill: false,
                 backgroundColor: 'transparent',
                 borderColor: '#4a90e2',
@@ -87,10 +112,7 @@ export default function ZingChart(props) {
                 tension: 0.4,
             },
             {
-                data:
-                    itemsChart[Object.keys(itemsChart)[1]]?.map((item) => {
-                        return item.counter;
-                    }) || [],
+                data: secondLine,
                 fill: false,
                 backgroundColor: 'transparent',
                 borderColor: '#50e3c2',
@@ -100,10 +122,7 @@ export default function ZingChart(props) {
                 tension: 0.4,
             },
             {
-                data:
-                    itemsChart[Object.keys(itemsChart)[2]]?.map((item) => {
-                        return item.counter;
-                    }) || [],
+                data: threeLine,
                 fill: false,
                 backgroundColor: 'transparent',
                 borderColor: '#e35050',

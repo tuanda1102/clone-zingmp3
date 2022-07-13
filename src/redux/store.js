@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { chartSlice } from 'src/components/ZingChart/zingChartSlice';
 import { homeSlice } from 'src/pages/Home/homeSlice';
-import { zingChartSlice } from 'src/pages/ZingChartPage/zingChartPageSlice';
+import { zingChartPageSlice } from 'src/pages/ZingChartPage/zingChartPageSlice';
 
 const store = configureStore({
     reducer: {
         homePage: homeSlice.reducer,
-        zingChart: zingChartSlice.reducer,
+        chart: chartSlice.reducer,
+        zingChart: zingChartPageSlice.reducer,
     },
 });
 
