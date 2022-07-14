@@ -19,8 +19,11 @@ export default function Home() {
 
     return (
         <>
-            {loadingStatus === 'pending' ? (
-                <div className="loading-container">
+            <div className="zingchart-page">
+                <div
+                    style={loadingStatus === 'pending' ? { display: 'grid' } : { display: 'none' }}
+                    className="loading-container"
+                >
                     <div className="lds-ellipsis">
                         <div></div>
                         <div></div>
@@ -28,7 +31,6 @@ export default function Home() {
                         <div></div>
                     </div>
                 </div>
-            ) : (
                 <div className="home">
                     <Banner />
                     <TodayChoice />
@@ -38,7 +40,7 @@ export default function Home() {
                     <NewRelease />
                     <HomeFooter />
                 </div>
-            )}
+            </div>
         </>
     );
 }

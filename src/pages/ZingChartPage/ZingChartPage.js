@@ -15,8 +15,11 @@ export default function ZingChartPage() {
 
     return (
         <>
-            {loadingStatus === 'pending' ? (
-                <div className="loading-container">
+            <div className="zingchart-page">
+                <div
+                    style={loadingStatus === 'pending' ? { display: 'grid' } : { display: 'none' }}
+                    className="loading-container"
+                >
                     <div className="lds-ellipsis">
                         <div></div>
                         <div></div>
@@ -24,12 +27,9 @@ export default function ZingChartPage() {
                         <div></div>
                     </div>
                 </div>
-            ) : (
-                <div className="zingchart-page">
-                    <Chart />
-                    <ListSongs />
-                </div>
-            )}
+                <Chart />
+                <ListSongs />
+            </div>
         </>
     );
 }

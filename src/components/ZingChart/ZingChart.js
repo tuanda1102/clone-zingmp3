@@ -15,13 +15,15 @@ export default function ZingChart(props) {
     const [threeLine, setThreeLine] = useState([]);
     const dataChart = useSelector(chartDataSelector);
 
-    console.log('render');
-
     const itemsChart = dataChart.data.chart?.items;
     useEffect(() => {
         dispatch(getChart());
     }, []);
 
+    // console.log(itemsChart);
+    // console.log('render');
+
+    console.log('render');
     useEffect(() => {
         if (itemsChart) {
             setTimes(

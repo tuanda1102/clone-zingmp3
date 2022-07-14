@@ -1,6 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { listSongsChartSelector } from 'src/redux/selectors/zingChartPageSelector';
 
 export default function ListSongs() {
+    const listSongs = useSelector(listSongsChartSelector);
+
+    // console.log(listSongs);
+
     return (
         <div className="list">
             <div className="chart-song-item">
