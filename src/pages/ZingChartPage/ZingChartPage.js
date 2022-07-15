@@ -1,18 +1,11 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import Chart from 'src/components/ZingChartPageComponents/Chart/Chart';
 import ListSongs from 'src/components/ZingChartPageComponents/ListSongs/ListSongs';
-import { statusLoadingZingChartSelector } from 'src/redux/selectors/zingChartPageSelector';
-import { getChartHome } from './zingChartPageSlice';
+import { statusChart } from 'src/redux/selectors/zingChartPageSelector';
 
 export default function ZingChartPage() {
-    const loadingStatus = useSelector(statusLoadingZingChartSelector);
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getChartHome());
-    }, []);
-
+    const loadingStatus = useSelector(statusChart);
     return (
         <>
             <div className="zingchart-page">

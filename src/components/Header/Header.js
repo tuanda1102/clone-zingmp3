@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Tippy from '@tippyjs/react/headless';
 
 export default function Header() {
     const [offset, setOffset] = useState(0);
@@ -22,12 +23,20 @@ export default function Header() {
                 <button className="header-left-btn btn-forward">
                     <ion-icon name="arrow-forward-outline"></ion-icon>
                 </button>
-                <div className="search">
-                    <span className="search-icon">
-                        <ion-icon name="search-outline"></ion-icon>
-                    </span>
-                    <input type="text" placeholder="Nhập tên bài hát, nghệ sĩ hoặc MV..." />
-                </div>
+                <Tippy
+                    render={(attrs) => (
+                        <div className="box" tabIndex="-1" {...attrs}>
+                            My tippy box
+                        </div>
+                    )}
+                >
+                    <div className="search">
+                        <span className="search-icon">
+                            <ion-icon name="search-outline"></ion-icon>
+                        </span>
+                        <input type="text" placeholder="Nhập tên bài hát, nghệ sĩ hoặc MV..." />
+                    </div>
+                </Tippy>
             </div>
 
             <div className="header-right">

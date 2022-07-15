@@ -23,5 +23,5 @@ export const chartSlice = createSlice({
 
 export const getChart = createAsyncThunk('chart/getChartHome', async () => {
     const res = await axios.get(`${DOMAIN}/api/charthome`);
-    return res.data.data.RTChart;
+    return res.data.data;
 });

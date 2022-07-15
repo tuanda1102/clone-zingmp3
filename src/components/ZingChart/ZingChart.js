@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { Chart as ChartJS, registerables } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import 'chartjs-adapter-moment';
 import { useDispatch, useSelector } from 'react-redux';
-import { chartDataSelector } from 'src/redux/selectors/chartSelector';
+import 'chartjs-adapter-moment';
+
 import { getChart } from './zingChartSlice';
+import { chartDataSelector } from 'src/redux/selectors/zingChartPageSelector';
 ChartJS.register(...registerables);
 
-export default function ZingChart(props) {
+function ZingChart(props) {
     const dispatch = useDispatch();
     const [times, setTimes] = useState([]);
     const [firstLine, setFirstLine] = useState([]);
@@ -15,15 +16,11 @@ export default function ZingChart(props) {
     const [threeLine, setThreeLine] = useState([]);
     const dataChart = useSelector(chartDataSelector);
 
-    const itemsChart = dataChart.data.chart?.items;
+    const itemsChart = dataChart.data?.RTChart?.chart.items;
+
     useEffect(() => {
         dispatch(getChart());
     }, []);
-
-    // console.log(itemsChart);
-    // console.log('render');
-
-    console.log('render');
     useEffect(() => {
         if (itemsChart) {
             setTimes(
@@ -142,3 +139,5 @@ export default function ZingChart(props) {
         </div>
     );
 }
+
+export default memo(ZingChart);

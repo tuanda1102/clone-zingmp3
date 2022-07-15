@@ -1,7 +1,11 @@
-export const statusLoadingZingChartSelector = (state) => {
-    return state.zingChart.status;
+export const statusChart = (state) => {
+    return state.chart.status;
 };
 
-export const listSongsChartSelector = (state) => {
-    return state.chart.data;
+export const chartDataSelector = (state) => {
+    return state.chart;
+};
+
+export const listSongsSelector = (state) => {
+    return state.chart.data.RTChart?.items;
 };

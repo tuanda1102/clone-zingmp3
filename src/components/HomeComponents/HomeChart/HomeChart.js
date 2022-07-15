@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, memo } from 'react';
 import { Button } from 'src/components/StyledComponents/Button';
 import ZingChart from 'src/components/ZingChart/ZingChart';
 
-export default function HomeChart() {
+function HomeChart() {
     return (
         <Fragment>
             <div className="home-chart home-row-item">
@@ -119,3 +119,5 @@ export default function HomeChart() {
         </Fragment>
     );
 }
+
+export default memo(HomeChart);
