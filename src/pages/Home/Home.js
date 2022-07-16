@@ -8,6 +8,8 @@ import Banner from 'src/components/HomeComponents/Slider/Banner';
 import { getHome } from './homeSlice';
 import { statusLoadingHomeSelector } from 'src/redux/selectors/homeSelectors';
 import NewRelease from 'src/components/HomeComponents/NewRelease/NewRelease';
+import { getChart } from 'src/components/ZingChart/zingChartSlice';
+import NewMusics from 'src/components/HomeComponents/NewMusics/NewMusics';
 
 export default function Home() {
     const loadingStatus = useSelector(statusLoadingHomeSelector);
@@ -15,6 +17,7 @@ export default function Home() {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getHome());
+        dispatch(getChart());
     }, []);
 
     return (
@@ -34,7 +37,7 @@ export default function Home() {
                 <div className="home">
                     <Banner />
                     <TodayChoice />
-                    {/* <NewMusics /> */}
+                    <NewMusics />
                     <HomeChart height="320px" />
                     <HomeTop />
                     <NewRelease />

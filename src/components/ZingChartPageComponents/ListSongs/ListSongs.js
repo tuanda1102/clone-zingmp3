@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Button } from 'src/components/StyledComponents/Button';
 import { listSongsSelector } from 'src/redux/selectors/zingChartPageSelector';
-import SongItem from './SongItem';
+import SongItem from '../SongItem/SongItem';
 
 export default function ListSongs() {
+    const [visible, setVisible] = useState(10);
     const listSongs = useSelector(listSongsSelector);
 
-    const renderListSongs = listSongs?.map((song, index) => {
-        return <SongItem key={index} song={song} rank={index + 1} />;
+    const handleLoadMore = () => {
+        setVisible(100);
+    };
+
+    const renderListSongs = listSongs?.slice(0, visible).map((song, index) => {
+        return <SongItem withContentAlbum key={index} song={song} rank={index + 1} />;
     });
 
-    return <div className="list">{renderListSongs}</div>;
+    return (
+        <div className="list">
+            {renderListSongs}
+            <div className="loadmore-btn">
+                <Button onClick={handleLoadMore}>Xem Top 100</Button>
+            </div>
+        </div>
+    );
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { CircleButton } from 'src/components/StyledComponents/Button';
 import ZingChart from 'src/components/ZingChart/ZingChart';
 
 export default function Chart() {
@@ -11,9 +12,9 @@ export default function Chart() {
             </div>
             <div className="wrapper-header">
                 <h2>#zingchart</h2>
-                <button>
+                <CircleButton primary width="40px" height="40px">
                     <ion-icon name="play"></ion-icon>
-                </button>
+                </CircleButton>
             </div>
             <ZingChart height="320px" />
         </div>

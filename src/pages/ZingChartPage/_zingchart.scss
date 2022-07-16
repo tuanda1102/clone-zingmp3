@@ -2,38 +2,7 @@
     .chart-wrapper {
         position: relative;
         padding: 110px $pd-8 0 $pd-8;
-        .background-chart {
-            .bg-blur {
-                background: url('https://zjs.zmdcdn.me/zmp3-desktop/releases/v1.7.0/static/media/bg-chart.fd766403.jpg')
-                    top/cover no-repeat;
-                -webkit-filter: grayscale(1);
-                filter: grayscale(1);
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                left: 0;
-                right: 0;
-            }
-            .bg-alpha {
-                z-index: 0;
-                background-image: linear-gradient(180deg, hsla(0, 0%, 100%, 0) 37%, $color-bg-dark-0);
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                left: 0;
-                right: 0;
-            }
-            .bg-alpha-1 {
-                opacity: 0.9;
-                z-index: 0;
-                background-image: linear-gradient(180deg, $color-bg-dark-0, $color-bg-dark-0);
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                left: 0;
-                right: 0;
-            }
-        }
+        @include blurBgChart('https://zjs.zmdcdn.me/zmp3-desktop/releases/v1.7.1/static/media/bg-chart.fd766403.jpg');
         .wrapper-header {
             position: relative;
             color: $color-white-0;
@@ -45,89 +14,66 @@
                 font-weight: $fw-0;
                 margin: 0;
             }
-            button {
-                margin-left: $mg-9;
-                background: $color-primary;
-                color: $color-white-0;
-                border: none;
-                border-radius: $radius-1;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: 40px;
-                height: 40px;
-                &:hover {
-                    opacity: 0.8;
-                }
-            }
         }
     }
     .list {
         margin: $pd-6 0;
         padding: 0 $pd-8;
+        .loadmore-btn {
+            padding-top: $pd-4;
+            text-align: center;
+        }
+    }
+}
+
+.week-chart {
+    position: relative;
+    margin: $pd-6 0;
+    padding: $pd-6 $pd-8 0 $pd-8;
+    color: $color-white-0;
+    @include blurBgChart('https://zjs.zmdcdn.me/zmp3-desktop/releases/v1.7.1/static/media/week-chart-bg.edf332e5.jpg');
+}
+
+.wrapper-week-chart {
+    position: relative;
+    .week-heading {
+        margin: 0 0 $mg-2;
+        a {
+            @include fontSet($fs-8, $fw-0, $line-height-0, $color-white-0);
+            text-decoration: none;
+        }
+    }
+}
+
+.week-box {
+    border-radius: $radius-4;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: $pd-2 $pd-4;
+    .week-box-header {
+        display: flex;
+        align-items: center;
+        padding: 0 0 $pd-4 40px;
+        .week-box-heading {
+            @include fontSet($fs-2, $fw-0, $line-height-0, $color-white-0);
+        }
+    }
+    .box-list {
         .chart-song-item {
-            border-bottom: 1px solid $color-hover-btn;
-            border-radius: $radius-3;
+            border-bottom: none;
+            .media-left {
+                flex-grow: 1;
+                width: 100%;
+            }
+            .song-prefix {
+                width: 55px;
+            }
+        }
+    }
+    .week-box-btn {
+        text-align: center;
+        button {
             &:hover {
                 background-color: $color-hover-btn;
-            }
-            .item-media {
-                height: 60px;
-                padding: 10px;
-                @include flexCenter;
-                .media-left {
-                    display: flex;
-                    align-items: center;
-                    .song-prefix {
-                        width: 60px;
-                        margin-right: $mg-9;
-                        .prefix-number {
-                            font-size: $fs-9;
-                            font-weight: $fw-0;
-                            color: transparent;
-                            -webkit-text-stroke: 1px #3460f5;
-                        }
-                    }
-                    .song-thumb {
-                        width: 40px;
-                        margin-right: $mg-3;
-                        img {
-                            width: 100%;
-                        }
-                    }
-                    .song-info {
-                        .song-title {
-                            color: $color-white-0;
-                            font-weight: $fw-0;
-                            margin: 0;
-                        }
-                        .song-subtitle {
-                            a {
-                                text-decoration: none;
-                                color: $color-gray-3;
-                                &:hover {
-                                    text-decoration: underline;
-                                    color: $color-primary;
-                                }
-                            }
-                        }
-                    }
-                }
-                .media-content {
-                    span {
-                        &:hover {
-                            text-decoration: underline;
-                            color: $color-primary;
-                            cursor: pointer;
-                        }
-                    }
-                }
-
-                .media-content,
-                .media-right {
-                    color: $color-gray-4;
-                    font-size: $fs-6;
-                }
             }
         }
     }

@@ -9,3 +9,7 @@ export const chartDataSelector = (state) => {
 export const listSongsSelector = (state) => {
     return state.chart.data.RTChart?.items;
 };
+
+export const chartWeekSelector = (state) => {
+    return state.chart.data.weekChart;
+};

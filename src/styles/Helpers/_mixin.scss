@@ -57,3 +57,37 @@
         }
     }
 }
+
+@mixin blurBgChart($bg) {
+    .background-chart {
+        .bg-blur {
+            background: url($bg) top/cover no-repeat;
+            -webkit-filter: grayscale(1);
+            filter: grayscale(1);
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        .bg-alpha {
+            z-index: 0;
+            background-image: linear-gradient(180deg, hsla(0, 0%, 100%, 0) 37%, $color-bg-dark-0);
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        .bg-alpha-1 {
+            opacity: 0.9;
+            z-index: 0;
+            background-image: linear-gradient(180deg, $color-bg-dark-0, $color-bg-dark-0);
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    }
+}

@@ -123,7 +123,6 @@
         }
         .card-item-bottom {
             margin-top: $mg-4;
-
             .card-title {
                 text-decoration: none;
                 margin-bottom: $mg-9;
@@ -173,48 +172,24 @@
         .home-chart-content {
             max-height: 320px;
             .home-chart-left {
-                text-align: center;
                 .home-chart-list {
                     .chart-song-item {
-                        @include flexCenter;
-                        height: $height-5;
-                        margin: $mg-3 0;
-                        padding: 0 $pd-3;
                         background-color: $color-bg-transparent;
-                        border-radius: $radius-3;
-                        .song-item-left {
-                            @include flexCenter;
-                            .song-item-num {
-                                width: 22px;
-                                font-size: $fs-5 + 4px;
-                                color: transparent;
-                                font-weight: $fw-0;
-                                -webkit-text-stroke: 1px $color-primary;
-                            }
-                            .media {
-                                @include flexCenter;
-                                padding: 0 $pd-4;
-                                .media-thumb {
-                                    padding-right: $pd-4;
-                                    img {
-                                        width: 60px;
-                                        height: 60px;
-                                        object-fit: cover;
-                                        border-radius: $radius-3;
-                                    }
-                                }
-                                .media-content {
-                                    .media-content-title {
-                                        @include fontSet($fs-0, $fw-0, $line-height-0, $color-white-0);
-                                    }
-                                    .media-content-subtitle {
-                                        @include fontSet($fs-6, $fw-1, $line-height-1, $color-gray-3);
-                                    }
-                                }
+                        height: 80px;
+                        margin: $mg-3 0;
+                        border-bottom: none;
+                        .media-left {
+                            flex-grow: 1;
+                            width: 100%;
+                        }
+                        .song-prefix {
+                            width: 22px;
+                            .prefix-sort {
+                                display: none;
                             }
                         }
-                        .song-item-right {
-                            @include fontSet($fs-7, $fw-0, $line-height-0, $color-white-0);
+                        .song-thumb {
+                            width: 60px;
                         }
                         &:hover {
                             background-color: $color-hover-btn;
@@ -224,6 +199,13 @@
                 button {
                     &:hover {
                         background-color: $color-hover-btn;
+                    }
+                }
+                .home-chart-btn {
+                    text-align: center;
+                    a {
+                        text-decoration: none;
+                        color: white;
                     }
                 }
             }

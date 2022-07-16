@@ -63,11 +63,11 @@ export default function Footer() {
                 </div>
                 <div className="time-progress">
                     <span>00:02</span>
-                    <div id="progress-container">
-                        <input type="range" className="amplitude-song-slider" />
-                        <progress id="song-played-progress" className="amplitude-song-played-progress" />
-                        <progress id="song-buffered-progress" className="amplitude-buffered-progress" value={0} />
+                    <div className="progress-container">
+                        <input id="progress" className="progress" name="progress" type="range" />
+                        <audio id="audio" src />
                     </div>
+
                     <span>06:08</span>
                 </div>
             </div>

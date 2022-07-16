@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function SongItem({ song, rank }) {
+export default function SongItem({ song, rank, withContentAlbum }) {
     const str_pad_left = (string, pad, length) => {
         return (new Array(length + 1).join(pad) + string).slice(-length);
     };
@@ -11,6 +11,9 @@ export default function SongItem({ song, rank }) {
                 <div className="media-left">
                     <div className="song-prefix">
                         <span className="prefix-number">{rank}</span>
+                        <div className="prefix-sort">
+                            <ion-icon name="remove-outline"></ion-icon>
+                        </div>
                     </div>
                     <div className="song-thumb">
                         <div className="thumb-img">
@@ -24,7 +27,7 @@ export default function SongItem({ song, rank }) {
                         </span>
                     </div>
                 </div>
-                <div className="media-content">{song.album?.title}</div>
+                <div className="media-content">{withContentAlbum ? song.album?.title : ''}</div>
                 <div className="media-right">
                     <div className="media-right-item duration">
                         {str_pad_left(Math.floor(song.duration / 60), '0', 2)}:

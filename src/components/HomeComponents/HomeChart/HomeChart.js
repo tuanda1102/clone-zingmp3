@@ -1,10 +1,20 @@
-import React, { Fragment, memo } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Button } from 'src/components/StyledComponents/Button';
 import ZingChart from 'src/components/ZingChart/ZingChart';
+import SongItem from 'src/components/ZingChartPageComponents/SongItem/SongItem';
+import { listSongsSelector } from 'src/redux/selectors/zingChartPageSelector';
 
-function HomeChart() {
+export default function HomeChart() {
+    const listSongs = useSelector(listSongsSelector);
+
+    const renderListSongs = listSongs?.slice(0, 3).map((song, index) => {
+        return <SongItem key={index} song={song} rank={index + 1} />;
+    });
+
     return (
-        <Fragment>
+        <>
             <div className="home-chart home-row-item">
                 <div className="home-chart-header">
                     <a href="/">#zingchart</a>
@@ -14,69 +24,16 @@ function HomeChart() {
                 </div>
                 <div className="home-chart-content row">
                     <div className="home-chart-left col-4">
-                        <div className="home-chart-list">
-                            <div className="chart-song-item">
-                                <div className="song-item-left">
-                                    <span className="song-item-num">1</span>
-                                    <div className="media">
-                                        <a href="/" className="media-thumb">
-                                            <img
-                                                src="https://photo-resize-zmp3.zmdcdn.me/w94_r1x1_webp/cover/b/0/c/8/b0c8399ab4bf53e7eb1285ee1e8aaa32.jpg"
-                                                alt="thumb"
-                                            />
-                                        </a>
-                                        <div className="media-content">
-                                            <div className="media-content-title">Em Nên Dừng Lại</div>
-                                            <span className="media-content-subtitle">Khắc Việt</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="song-item-right">
-                                    <span>46%</span>
-                                </div>
-                            </div>
-                            <div className="chart-song-item">
-                                <div className="song-item-left">
-                                    <span className="song-item-num">1</span>
-                                    <div className="media">
-                                        <a href="/" className="media-thumb">
-                                            <img
-                                                src="https://photo-resize-zmp3.zmdcdn.me/w94_r1x1_webp/cover/b/0/c/8/b0c8399ab4bf53e7eb1285ee1e8aaa32.jpg"
-                                                alt="thumb"
-                                            />
-                                        </a>
-                                        <div className="media-content">
-                                            <div className="media-content-title">Em Nên Dừng Lại</div>
-                                            <span className="media-content-subtitle">Khắc Việt</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="song-item-right">
-                                    <span>46%</span>
-                                </div>
-                            </div>
-                            <div className="chart-song-item">
-                                <div className="song-item-left">
-                                    <span className="song-item-num">1</span>
-                                    <div className="media">
-                                        <a href="/" className="media-thumb">
-                                            <img
-                                                src="https://photo-resize-zmp3.zmdcdn.me/w94_r1x1_webp/cover/b/0/c/8/b0c8399ab4bf53e7eb1285ee1e8aaa32.jpg"
-                                                alt="thumb"
-                                            />
-                                        </a>
-                                        <div className="media-content">
-                                            <div className="media-content-title">Em Nên Dừng Lại</div>
-                                            <span className="media-content-subtitle">Khắc Việt</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="song-item-right">
-                                    <span>46%</span>
-                                </div>
-                            </div>
+                        <div className="home-chart-list">{renderListSongs}</div>
+                        <div className="home-chart-btn">
+                            <Button
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                }}
+                            >
+                                <Link to="/zingchart">Xem Thêm</Link>
+                            </Button>
                         </div>
-                        <Button>Xem Thêm</Button>
                     </div>
 
                     <div className="home-chart-right col-8">
@@ -116,8 +73,6 @@ function HomeChart() {
                     </a>
                 </div>
             </div>
-        </Fragment>
+        </>
     );
 }
-
-export default memo(HomeChart);
