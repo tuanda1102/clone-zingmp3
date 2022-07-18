@@ -1,21 +1,36 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { linkAudioSelector, songSelector } from 'src/redux/selectors/controlsSelector';
 
-export default function Footer() {
+export default function Controls() {
+    // const dispatch = useDispatch();
+    const song = useSelector(songSelector);
+    const linkAudio = useSelector(linkAudioSelector);
+
+    const RenderAudio = () => {
+        return (
+            <audio controls autoPlay>
+                <source src={linkAudio} type="audio/mpeg"></source>
+            </audio>
+        );
+    };
+
+    const convertSecondsToMinutes = (string, pad, length) => {
+        return (new Array(length + 1).join(pad) + string).slice(-length);
+    };
+
     return (
-        <div className="footer">
-            <div className="footer-left">
+        <div className="controls">
+            <div className="controls-left">
                 <div className="media">
                     <div className="media-left">
                         <a href="/" className="media-thumb">
-                            <img
-                                src="https://photo-resize-zmp3.zmdcdn.me/w94_r1x1_webp/cover/b/0/c/8/b0c8399ab4bf53e7eb1285ee1e8aaa32.jpg"
-                                alt="thumb"
-                            />
+                            <img src={song.thumbnailM} alt={song.title} />
                         </a>
                         <div className="media-content">
-                            <div className="media-content-title">Em Nên Dừng Lại</div>
+                            <div className="media-content-title">{song.title}</div>
                             <a href="/" className="media-content-subtitle">
-                                Khắc Việt
+                                {song.artistsNames}
                             </a>
                         </div>
                     </div>
@@ -33,8 +48,8 @@ export default function Footer() {
                     </div>
                 </div>
             </div>
-            <div className="footer-center">
-                <div className="controls">
+            <div className="controls-center">
+                <div className="controls-main">
                     <div className="controls-top-item">
                         <div className="control-btn">
                             <ion-icon name="shuffle-outline"></ion-icon>
@@ -61,17 +76,21 @@ export default function Footer() {
                         </div>
                     </div>
                 </div>
+                {<RenderAudio />}
                 <div className="time-progress">
                     <span>00:02</span>
-                    <div className="progress-container">
-                        <input id="progress" className="progress" name="progress" type="range" />
-                        <audio id="audio" src />
-                    </div>
-
-                    <span>06:08</span>
+                    {/* <div className="progress-area">
+                        <div className="progress-bar">
+                            <audio id="main-audio" src={audio}></audio>
+                        </div>
+                    </div> */}
+                    <span>
+                        {convertSecondsToMinutes(Math.floor(song.duration / 60), '0', 2)}:
+                        {convertSecondsToMinutes(song.duration - Math.floor(song.duration / 60) * 60, 0, 2)}
+                    </span>
                 </div>
             </div>
-            <div className="footer-right">
+            <div className="controls-right">
                 <div className="options">
                     <div className="option-item">
                         <div className="option-item-icon">

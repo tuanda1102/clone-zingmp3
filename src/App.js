@@ -2,10 +2,10 @@ import './styles/main.scss';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Sidebar from './components/Sidebar/Sidebar';
 import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
 import Home from './pages/Home/Home';
 import MyMusic from './pages/MyMusic/MyMusic';
 import ZingChartPage from './pages/ZingChartPage/ZingChartPage';
+import Controls from './components/Controls/Controls';
 
 function App() {
     return (
@@ -20,7 +20,7 @@ function App() {
                         <Route path="/zingchart" element={<ZingChartPage />} />
                     </Routes>
                 </div>
-                <Footer />
+                <Controls />
             </div>
         </BrowserRouter>
     );

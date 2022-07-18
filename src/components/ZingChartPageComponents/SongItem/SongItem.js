@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { controlsSlice, playSong } from 'src/components/Controls/controlsSlice';
 
 export default function SongItem({ song, rank, withContentAlbum }) {
-    const str_pad_left = (string, pad, length) => {
+    const dispatch = useDispatch();
+    const convertSecondsToMinutes = (string, pad, length) => {
         return (new Array(length + 1).join(pad) + string).slice(-length);
     };
 
+    console.log('render SongItem');
+
+    const loadSongControls = () => {
+        console.log('dispatch SongItem');
+        dispatch(controlsSlice.actions.getSong(song));
+        dispatch(playSong(song.encodeId));
+    };
+
     return (
-        <div className="chart-song-item">
+        <div className="chart-song-item" onClick={loadSongControls}>
             <div className="item-media">
                 <div className="media-left">
                     <div className="song-prefix">
@@ -19,6 +30,9 @@ export default function SongItem({ song, rank, withContentAlbum }) {
                         <div className="thumb-img">
                             <img src={song.thumbnailM} alt={song.alias} />
                         </div>
+                        <div className="thumb-overley">
+                            <ion-icon name="play"></ion-icon>
+                        </div>
                     </div>
                     <div className="song-info">
                         <p className="song-title">{song.title}</p>
@@ -30,8 +44,8 @@ export default function SongItem({ song, rank, withContentAlbum }) {
                 <div className="media-content">{withContentAlbum ? song.album?.title : ''}</div>
                 <div className="media-right">
                     <div className="media-right-item duration">
-                        {str_pad_left(Math.floor(song.duration / 60), '0', 2)}:
-                        {str_pad_left(song.duration - Math.floor(song.duration / 60) * 60, 0, 2)}
+                        {convertSecondsToMinutes(Math.floor(song.duration / 60), '0', 2)}:
+                        {convertSecondsToMinutes(song.duration - Math.floor(song.duration / 60) * 60, 0, 2)}
                     </div>
                 </div>
             </div>
