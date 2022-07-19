@@ -27,6 +27,7 @@ export const controlsSlice = createSlice({
                 state.status = 'pending';
             })
             .addCase(playSong.fulfilled, (state, action) => {
+                state.status = 'idle';
                 state.data.linkAudio = Object.values(action.payload)[0];
             });
     },

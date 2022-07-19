@@ -8,7 +8,8 @@
     z-index: 100;
     padding: $pd-4 $pd-2;
     color: $color-white-0;
-    .controls-left {
+    z-index: 99999999999999;
+    .details {
         width: $width-2;
         .media {
             display: flex;
@@ -56,7 +57,7 @@
             }
         }
     }
-    .controls-center {
+    .player {
         max-width: 40vw;
         flex-grow: 1;
         display: flex;
@@ -79,6 +80,7 @@
                 }
             }
             .controls-btn-play {
+                position: relative;
                 &:hover {
                     background-color: transparent;
                 }
@@ -91,24 +93,22 @@
             }
         }
     }
-    .controls-right {
+    .options {
         width: $width-2;
-        .options {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            font-size: $fs-4;
-            .option-item {
-                padding: $pd-4;
-                margin-left: $mg-9;
-                cursor: pointer;
-                &:hover {
-                    background-color: $color-hover-btn;
-                    border-radius: $radius-1;
-                }
-                .option-item-icon {
-                    @include centerItemWithMargin;
-                }
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        font-size: $fs-4;
+        .option-item {
+            padding: $pd-4;
+            margin-left: $mg-9;
+            cursor: pointer;
+            &:hover {
+                background-color: $color-hover-btn;
+                border-radius: $radius-1;
+            }
+            .option-item-icon {
+                @include centerItemWithMargin;
             }
         }
     }
@@ -151,5 +151,21 @@
     &:hover > .progress-bar::before {
         opacity: 1;
         pointer-events: auto;
+    }
+}
+
+.loading-audio {
+    z-index: 9999;
+    position: absolute;
+    background-color: $color-bg-dark-2;
+    .loader {
+        height: 100%;
+        text-align: center;
+        display: inline-block;
+        vertical-align: top;
+    }
+    svg path,
+    svg rect {
+        fill: $color-white-0;
     }
 }

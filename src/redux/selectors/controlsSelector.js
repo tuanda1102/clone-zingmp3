@@ -5,3 +5,7 @@ export const songSelector = (state) => {
 export const linkAudioSelector = (state) => {
     return state.controls.data.linkAudio;
 };
+
+export const statusAudioSelector = (state) => {
+    return state.controls.status;
+};

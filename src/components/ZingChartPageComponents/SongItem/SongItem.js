@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { controlsSlice, playSong } from 'src/components/Controls/controlsSlice';
 
@@ -8,10 +8,7 @@ export default function SongItem({ song, rank, withContentAlbum }) {
         return (new Array(length + 1).join(pad) + string).slice(-length);
     };
 
-    console.log('render SongItem');
-
     const loadSongControls = () => {
-        console.log('dispatch SongItem');
         dispatch(controlsSlice.actions.getSong(song));
         dispatch(playSong(song.encodeId));
     };
