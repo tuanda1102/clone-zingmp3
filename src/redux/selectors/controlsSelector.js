@@ -9,3 +9,7 @@ export const linkAudioSelector = (state) => {
 export const statusAudioSelector = (state) => {
     return state.controls.status;
 };
+
+export const currentSongIndexSelector = (state) => {
+    return state.controls.data.currentSongIndex;
+};

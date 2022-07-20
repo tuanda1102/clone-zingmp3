@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { controlsSlice, playSong } from 'src/components/Controls/controlsSlice';
 
-export default function SongItem({ song, rank, withContentAlbum }) {
+export default function SongItem({ song, rank, withContentAlbum, index }) {
     const dispatch = useDispatch();
     const convertSecondsToMinutes = (string, pad, length) => {
         return (new Array(length + 1).join(pad) + string).slice(-length);
@@ -11,6 +11,7 @@ export default function SongItem({ song, rank, withContentAlbum }) {
     const loadSongControls = () => {
         dispatch(controlsSlice.actions.getSong(song));
         dispatch(playSong(song.encodeId));
+        dispatch(controlsSlice.actions.getCurrentSongIndex(index));
     };
 
     return (

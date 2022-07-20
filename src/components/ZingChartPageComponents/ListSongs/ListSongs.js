@@ -9,11 +9,11 @@ export default function ListSongs() {
     const listSongs = useSelector(listSongsSelector);
 
     const handleLoadMore = () => {
-        setVisible(100);
+        setVisible(listSongs.length);
     };
 
     const renderListSongs = listSongs?.slice(0, visible).map((song, index) => {
-        return <SongItem withContentAlbum key={index} song={song} rank={index + 1} />;
+        return <SongItem withContentAlbum index={index} key={song.encodeId} song={song} rank={index + 1} />;
     });
 
     return (

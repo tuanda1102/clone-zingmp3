@@ -1,12 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { linkAudioSelector, statusAudioSelector } from 'src/redux/selectors/controlsSelector';
+import { controlsSlice, playSong } from './controlsSlice';
 
-export default function Player({ song }) {
+export default function Player({ song, listSongs, currentSongIndex }) {
+    const dispatch = useDispatch();
     const linkAudio = useSelector(linkAudioSelector);
     const statusLoading = useSelector(statusAudioSelector);
     const audioEl = useRef(null);
-    const [isPlaying, setIsPlay] = useState(false);
+    const [isPlaying, setIsPlay] = useState(true);
     const [durationLine, setDurationLine] = useState(0);
 
     const convertSecondsToMinutes = (string, pad, length) => {
@@ -14,13 +16,37 @@ export default function Player({ song }) {
     };
 
     const handlePlayClick = () => {
-        isPlaying ? audioEl.current.play() : audioEl.current.pause();
         setIsPlay(!isPlaying);
+        isPlaying ? audioEl.current.pause() : audioEl.current.play();
     };
 
     const onPlaying = () => {
         if (audioEl.current?.duration) {
             setDurationLine((audioEl.current?.currentTime * 100) / audioEl.current?.duration);
+        }
+    };
+
+    const skipSong = (forwards = true) => {
+        if (forwards) {
+            if (currentSongIndex + 1 < listSongs.length) {
+                dispatch(controlsSlice.actions.getSong(listSongs[currentSongIndex + 1]));
+                dispatch(playSong(listSongs[currentSongIndex + 1].encodeId));
+                dispatch(controlsSlice.actions.getCurrentSongIndex(currentSongIndex + 1));
+            } else {
+                dispatch(controlsSlice.actions.getSong(listSongs[0]));
+                dispatch(playSong(listSongs[0].encodeId));
+                dispatch(controlsSlice.actions.getCurrentSongIndex(0));
+            }
+        } else {
+            if (currentSongIndex - 1 >= 0) {
+                dispatch(controlsSlice.actions.getSong(listSongs[currentSongIndex - 1]));
+                dispatch(playSong(listSongs[currentSongIndex - 1].encodeId));
+                dispatch(controlsSlice.actions.getCurrentSongIndex(currentSongIndex - 1));
+            } else {
+                dispatch(controlsSlice.actions.getSong(listSongs[listSongs.length - 1]));
+                dispatch(playSong(listSongs[listSongs.length - 1].encodeId));
+                dispatch(controlsSlice.actions.getCurrentSongIndex(listSongs.length - 1));
+            }
         }
     };
 
@@ -33,7 +59,12 @@ export default function Player({ song }) {
                     </div>
                 </div>
                 <div className="controls-top-item">
-                    <div className="control-btn">
+                    <div
+                        className="control-btn"
+                        onClick={() => {
+                            skipSong(false);
+                        }}
+                    >
                         <ion-icon name="play-skip-back-outline"></ion-icon>
                     </div>
                 </div>
@@ -86,14 +117,19 @@ export default function Player({ song }) {
                         }}
                     >
                         {isPlaying ? (
-                            <ion-icon name="play-circle-outline"></ion-icon>
-                        ) : (
                             <ion-icon name="pause-circle-outline"></ion-icon>
+                        ) : (
+                            <ion-icon name="play-circle-outline"></ion-icon>
                         )}
                     </div>
                 </div>
                 <div className="controls-top-item">
-                    <div className="control-btn">
+                    <div
+                        className="control-btn"
+                        onClick={() => {
+                            skipSong();
+                        }}
+                    >
                         <ion-icon name="play-skip-forward-outline"></ion-icon>
                     </div>
                 </div>
@@ -104,9 +140,10 @@ export default function Player({ song }) {
                 </div>
             </div>
             <div className="time-progress">
-                {convertSecondsToMinutes(Math.floor(audioEl.current.currentTime / 60), '0', 2)}:
+                {convertSecondsToMinutes(Math.floor(Math.floor(audioEl.current?.currentTime) / 60), '0', 2)}:
                 {convertSecondsToMinutes(
-                    audioEl.current.currentTime - Math.floor(audioEl.current.currentTime / 60) * 60,
+                    Math.floor(audioEl.current?.currentTime) -
+                        Math.floor(Math.floor(audioEl.current?.currentTime) / 60) * 60,
                     '0',
                     2,
                 )}
@@ -123,8 +160,13 @@ export default function Player({ song }) {
                     </div>
                 </div>
                 <span>
-                    {convertSecondsToMinutes(Math.floor(song.duration / 60), '0', 2)}:
-                    {convertSecondsToMinutes(song.duration - Math.floor(song.duration / 60) * 60, 0, 2)}
+                    {convertSecondsToMinutes(Math.floor(Math.floor(audioEl.current?.duration) / 60), '0', 2)}:
+                    {convertSecondsToMinutes(
+                        Math.floor(audioEl.current?.duration) -
+                            Math.floor(Math.floor(audioEl.current?.duration) / 60) * 60,
+                        0,
+                        2,
+                    )}
                 </span>
             </div>
         </div>
