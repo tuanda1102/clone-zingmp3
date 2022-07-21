@@ -4,12 +4,13 @@ import { controlsSlice, playSong } from 'src/components/Controls/controlsSlice';
 
 export default function SongItem({ song, rank, withContentAlbum, index }) {
     const dispatch = useDispatch();
+    const arrColorLine = ['#4a90e2', '#50e3c2', '#e35050'];
+
     const convertSecondsToMinutes = (string, pad, length) => {
         return (new Array(length + 1).join(pad) + string).slice(-length);
     };
 
     const loadSongControls = () => {
-        dispatch(controlsSlice.actions.getSong(song));
         dispatch(playSong(song.encodeId));
         dispatch(controlsSlice.actions.getCurrentSongIndex(index));
     };
@@ -19,7 +20,9 @@ export default function SongItem({ song, rank, withContentAlbum, index }) {
             <div className="item-media">
                 <div className="media-left">
                     <div className="song-prefix">
-                        <span className="prefix-number">{rank}</span>
+                        <span style={{ WebkitTextStroke: '1px' + arrColorLine[index] }} className="prefix-number">
+                            {rank}
+                        </span>
                         <div className="prefix-sort">
                             <ion-icon name="remove-outline"></ion-icon>
                         </div>

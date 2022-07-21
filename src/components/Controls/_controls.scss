@@ -117,6 +117,9 @@
 .time-progress {
     width: 100%;
     @include flexCenter;
+    .time-block {
+        min-width: 42px;
+    }
 }
 
 .progress-area {
@@ -124,29 +127,35 @@
     height: 6px;
     width: 100%;
     border-radius: 50px;
-    background: $color-blue-2;
+    background: $color-bg-dark-1;
     cursor: pointer;
+    position: relative;
     .progress-bar {
+        background: $color-bg-dark-1;
+        -webkit-appearance: none;
+        appearance: none;
         height: inherit;
-        width: 0;
-        position: relative;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: 0.2s;
+        transition: opacity 0.2s;
         border-radius: inherit;
-        background: $color-white-0;
-        &::before {
-            content: '';
-            position: absolute;
-            height: 12px;
-            width: 12px;
-            border-radius: 50%;
-            top: 50%;
-            right: -5px;
-            z-index: 2;
-            opacity: 0;
-            pointer-events: none;
-            transform: translateY(-50%);
-            background: inherit;
-            transition: opacity 0.2s ease;
-        }
+        left: 0;
+        right: 0;
+        position: absolute;
+        cursor: pointer;
+    }
+    .progress-bar::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 12px;
+        height: 6px;
+        cursor: pointer;
+        z-index: 1000000000;
+        background-color: $color-white-0;
+    }
+    input[type='range']::-webkit-slider-runnable-track {
+        -webkit-appearance: none;
     }
     &:hover > .progress-bar::before {
         opacity: 1;

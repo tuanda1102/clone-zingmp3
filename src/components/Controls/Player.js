@@ -3,47 +3,47 @@ import { useDispatch, useSelector } from 'react-redux';
 import { linkAudioSelector, statusAudioSelector } from 'src/redux/selectors/controlsSelector';
 import { controlsSlice, playSong } from './controlsSlice';
 
-export default function Player({ song, listSongs, currentSongIndex }) {
+export default function Player({ listSongs, currentSongIndex }) {
     const dispatch = useDispatch();
     const linkAudio = useSelector(linkAudioSelector);
     const statusLoading = useSelector(statusAudioSelector);
-    const audioEl = useRef(null);
+    const audioRef = useRef(null);
     const [isPlaying, setIsPlay] = useState(true);
-    const [durationLine, setDurationLine] = useState(0);
+    const [rangeValue, setRangeValue] = useState(0);
 
     const convertSecondsToMinutes = (string, pad, length) => {
         return (new Array(length + 1).join(pad) + string).slice(-length);
     };
 
     const handlePlayClick = () => {
+        isPlaying ? audioRef.current.pause() : audioRef.current.play();
         setIsPlay(!isPlaying);
-        isPlaying ? audioEl.current.pause() : audioEl.current.play();
     };
 
     const onPlaying = () => {
-        if (audioEl.current?.duration) {
-            setDurationLine((audioEl.current?.currentTime * 100) / audioEl.current?.duration);
+        if (audioRef.current?.duration) {
+            setRangeValue((audioRef.current?.currentTime * 100) / audioRef.current?.duration);
         }
+    };
+
+    const handleFastForward = () => {
+        console.log('handleFastForward');
     };
 
     const skipSong = (forwards = true) => {
         if (forwards) {
             if (currentSongIndex + 1 < listSongs.length) {
-                dispatch(controlsSlice.actions.getSong(listSongs[currentSongIndex + 1]));
                 dispatch(playSong(listSongs[currentSongIndex + 1].encodeId));
                 dispatch(controlsSlice.actions.getCurrentSongIndex(currentSongIndex + 1));
             } else {
-                dispatch(controlsSlice.actions.getSong(listSongs[0]));
                 dispatch(playSong(listSongs[0].encodeId));
                 dispatch(controlsSlice.actions.getCurrentSongIndex(0));
             }
         } else {
             if (currentSongIndex - 1 >= 0) {
-                dispatch(controlsSlice.actions.getSong(listSongs[currentSongIndex - 1]));
                 dispatch(playSong(listSongs[currentSongIndex - 1].encodeId));
                 dispatch(controlsSlice.actions.getCurrentSongIndex(currentSongIndex - 1));
             } else {
-                dispatch(controlsSlice.actions.getSong(listSongs[listSongs.length - 1]));
                 dispatch(playSong(listSongs[listSongs.length - 1].encodeId));
                 dispatch(controlsSlice.actions.getCurrentSongIndex(listSongs.length - 1));
             }
@@ -140,30 +140,40 @@ export default function Player({ song, listSongs, currentSongIndex }) {
                 </div>
             </div>
             <div className="time-progress">
-                {convertSecondsToMinutes(Math.floor(Math.floor(audioEl.current?.currentTime) / 60), '0', 2)}:
-                {convertSecondsToMinutes(
-                    Math.floor(audioEl.current?.currentTime) -
-                        Math.floor(Math.floor(audioEl.current?.currentTime) / 60) * 60,
-                    '0',
-                    2,
-                )}
-                <div className="progress-area">
-                    <div className="progress-bar" style={{ width: durationLine + '%' }}>
-                        <audio
-                            onTimeUpdate={onPlaying}
-                            ref={audioEl}
-                            autoPlay
-                            id="main-audio"
-                            src={linkAudio}
-                            type="audio/mpeg"
-                        ></audio>
-                    </div>
-                </div>
-                <span>
-                    {convertSecondsToMinutes(Math.floor(Math.floor(audioEl.current?.duration) / 60), '0', 2)}:
+                <span className="time-block">
+                    {convertSecondsToMinutes(Math.floor(Math.floor(audioRef.current?.currentTime) / 60), '0', 2)}:
                     {convertSecondsToMinutes(
-                        Math.floor(audioEl.current?.duration) -
-                            Math.floor(Math.floor(audioEl.current?.duration) / 60) * 60,
+                        Math.floor(audioRef.current?.currentTime) -
+                            Math.floor(Math.floor(audioRef.current?.currentTime) / 60) * 60,
+                        '0',
+                        2,
+                    )}
+                </span>
+                <div className="progress-area">
+                    <input
+                        onChange={handleFastForward}
+                        id="progress-bar"
+                        className="progress-bar"
+                        type="range"
+                        value={rangeValue}
+                        step="0"
+                        min="0"
+                        max="100"
+                    />
+                    <audio
+                        onTimeUpdate={onPlaying}
+                        ref={audioRef}
+                        id="main-audio"
+                        src={linkAudio}
+                        type="audio/mpeg"
+                        autoPlay={isPlaying}
+                    ></audio>
+                </div>
+                <span className="time-block">
+                    {convertSecondsToMinutes(Math.floor(Math.floor(audioRef.current?.duration) / 60), '0', 2)}:
+                    {convertSecondsToMinutes(
+                        Math.floor(audioRef.current?.duration) -
+                            Math.floor(Math.floor(audioRef.current?.duration) / 60) * 60,
                         0,
                         2,
                     )}

@@ -7,7 +7,6 @@ export const controlsSlice = createSlice({
     initialState: {
         status: 'idle',
         data: {
-            song: {},
             linkAudio: {},
             currentSongIndex: 0,
             controls: {
@@ -18,9 +17,6 @@ export const controlsSlice = createSlice({
         },
     },
     reducers: {
-        getSong: (state, actions) => {
-            state.data.song = actions.payload;
-        },
         getCurrentSongIndex: (state, actions) => {
             state.data.currentSongIndex = actions.payload;
         },

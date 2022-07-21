@@ -10,7 +10,7 @@ export default function HomeChart() {
     const listSongs = useSelector(listSongsSelector);
 
     const renderListSongs = listSongs?.slice(0, 3).map((song, index) => {
-        return <SongItem key={index} song={song} rank={index + 1} />;
+        return <SongItem index={index} key={song.encodeId} song={song} rank={index + 1} />;
     });
 
     return (
@@ -23,7 +23,7 @@ export default function HomeChart() {
                     </button>
                 </div>
                 <div className="home-chart-content row">
-                    <div className="home-chart-left col-4">
+                    <div className="home-chart-left col-5">
                         <div className="home-chart-list">{renderListSongs}</div>
                         <div className="home-chart-btn">
                             <Button
@@ -36,7 +36,7 @@ export default function HomeChart() {
                         </div>
                     </div>
 
-                    <div className="home-chart-right col-8">
+                    <div className="home-chart-right col-7">
                         <ZingChart height="320px" />
                     </div>
                 </div>

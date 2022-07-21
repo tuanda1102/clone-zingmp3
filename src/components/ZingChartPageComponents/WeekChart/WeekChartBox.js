@@ -5,7 +5,7 @@ import SongItem from '../SongItem/SongItem';
 export default function WeekChartBox({ data }) {
     const RenderListSongs = () => {
         return data.items.slice(0, 5).map((song, index) => {
-            return <SongItem key={index} song={song} rank={index + 1} />;
+            return <SongItem key={song.encodeId} song={song} rank={index + 1} />;
         });
     };
 

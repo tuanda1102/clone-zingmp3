@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Chart as ChartJS, registerables } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
@@ -6,38 +6,36 @@ import 'chartjs-adapter-moment';
 import { chartDataSelector } from 'src/redux/selectors/zingChartPageSelector';
 ChartJS.register(...registerables);
 
-function ZingChart(props) {
-    const [times, setTimes] = useState([]);
-    const [firstLine, setFirstLine] = useState([]);
-    const [secondLine, setSecondLine] = useState([]);
-    const [threeLine, setThreeLine] = useState([]);
+export default function ZingChart(props) {
     const dataChart = useSelector(chartDataSelector);
+    const [times, setTimes] = useState([]);
+    const [linesData, setLinesData] = useState([]);
 
+    const arrColorLine = ['#4a90e2', '#50e3c2', '#e35050'];
     const itemsChart = dataChart.data?.RTChart?.chart.items;
+
     useEffect(() => {
         if (itemsChart) {
-            setTimes(
-                itemsChart[Object.keys(itemsChart)[0]]?.map((item) => {
-                    return item.time;
-                }),
-            );
-            setFirstLine(
-                itemsChart[Object.keys(itemsChart)[0]]?.map((item) => {
-                    return item.counter;
-                }),
-            );
-            setSecondLine(
-                itemsChart[Object.keys(itemsChart)[1]]?.map((item) => {
-                    return item.counter;
-                }),
-            );
-            setThreeLine(
-                itemsChart[Object.keys(itemsChart)[2]]?.map((item) => {
-                    return item.counter;
-                }),
-            );
+            const arrItemsChart = Object.values(itemsChart);
+            setLinesData(arrItemsChart);
+            setTimes(arrItemsChart[0].map((item) => item.time));
         }
     }, [itemsChart]);
+
+    const dataLineChart = () => {
+        return linesData?.map((dataLine, index) => {
+            return {
+                data: dataLine.map((item) => item.counter),
+                fill: false,
+                backgroundColor: 'transparent',
+                borderColor: arrColorLine[index],
+                pointHoverBackgroundColor: arrColorLine[index],
+                pointHoverBorderColor: arrColorLine[index],
+                borderWidth: 2,
+                tension: 0.4,
+            };
+        });
+    };
 
     const options = {
         responsive: true,
@@ -92,38 +90,7 @@ function ZingChart(props) {
 
     const data = {
         labels: times,
-        datasets: [
-            {
-                data: firstLine,
-                fill: false,
-                backgroundColor: 'transparent',
-                borderColor: '#4a90e2',
-                pointHoverBackgroundColor: '#4a90e2',
-                pointHoverBorderColor: '#4a90e2',
-                borderWidth: 2,
-                tension: 0.4,
-            },
-            {
-                data: secondLine,
-                fill: false,
-                backgroundColor: 'transparent',
-                borderColor: '#50e3c2',
-                pointHoverBackgroundColor: '#50e3c2',
-                pointHoverBorderColor: '#50e3c2',
-                borderWidth: 2,
-                tension: 0.4,
-            },
-            {
-                data: threeLine,
-                fill: false,
-                backgroundColor: 'transparent',
-                borderColor: '#e35050',
-                pointHoverBackgroundColor: '#e35050',
-                pointHoverBorderColor: '#e35050',
-                borderWidth: 2,
-                tension: 0.4,
-            },
-        ],
+        datasets: dataLineChart(),
     };
 
     return (
@@ -132,5 +99,3 @@ function ZingChart(props) {
         </div>
     );
 }
-
-export default memo(ZingChart);
