@@ -9,43 +9,64 @@ export default function Player({ listSongs, currentSongIndex }) {
     const statusLoading = useSelector(statusAudioSelector);
     const audioRef = useRef(null);
     const [isPlaying, setIsPlay] = useState(true);
-    const [rangeValue, setRangeValue] = useState(0);
+    const [durationLine, setDurationLine] = useState(0);
+    const [shuffle, setShuffle] = useState(false);
 
     const convertSecondsToMinutes = (string, pad, length) => {
         return (new Array(length + 1).join(pad) + string).slice(-length);
     };
 
+    // handle when user click button pause or play
     const handlePlayClick = () => {
         isPlaying ? audioRef.current.pause() : audioRef.current.play();
         setIsPlay(!isPlaying);
     };
 
+    // range line run
     const onPlaying = () => {
         if (audioRef.current?.duration) {
-            setRangeValue((audioRef.current?.currentTime * 100) / audioRef.current?.duration);
+            setDurationLine((audioRef.current?.currentTime * 100) / audioRef.current?.duration);
         }
     };
 
-    const handleFastForward = () => {
-        console.log('handleFastForward');
+    // handle when music ended
+    const onEnded = () => {
+        skipSong();
     };
 
+    // handle when click line range =>> fast-forward music
+    const handleFastForward = (e) => {
+        const seekTime = (audioRef.current?.duration / 100) * e.target.value;
+        audioRef.current.currentTime = seekTime;
+    };
+
+    // handleShuffle
+    const handleShuffle = () => {
+        setShuffle(!shuffle);
+    };
+
+    // skip song
     const skipSong = (forwards = true) => {
-        if (forwards) {
-            if (currentSongIndex + 1 < listSongs.length) {
-                dispatch(playSong(listSongs[currentSongIndex + 1].encodeId));
-                dispatch(controlsSlice.actions.getCurrentSongIndex(currentSongIndex + 1));
-            } else {
-                dispatch(playSong(listSongs[0].encodeId));
-                dispatch(controlsSlice.actions.getCurrentSongIndex(0));
-            }
+        if (shuffle) {
+            const randomNum = listSongs[Math.floor(Math.random() * listSongs.length)];
+            console.log(randomNum);
         } else {
-            if (currentSongIndex - 1 >= 0) {
-                dispatch(playSong(listSongs[currentSongIndex - 1].encodeId));
-                dispatch(controlsSlice.actions.getCurrentSongIndex(currentSongIndex - 1));
+            if (forwards) {
+                if (currentSongIndex + 1 < listSongs.length) {
+                    dispatch(playSong(listSongs[currentSongIndex + 1].encodeId));
+                    dispatch(controlsSlice.actions.getCurrentSongIndex(currentSongIndex + 1));
+                } else {
+                    dispatch(playSong(listSongs[0].encodeId));
+                    dispatch(controlsSlice.actions.getCurrentSongIndex(0));
+                }
             } else {
-                dispatch(playSong(listSongs[listSongs.length - 1].encodeId));
-                dispatch(controlsSlice.actions.getCurrentSongIndex(listSongs.length - 1));
+                if (currentSongIndex - 1 >= 0) {
+                    dispatch(playSong(listSongs[currentSongIndex - 1].encodeId));
+                    dispatch(controlsSlice.actions.getCurrentSongIndex(currentSongIndex - 1));
+                } else {
+                    dispatch(playSong(listSongs[listSongs.length - 1].encodeId));
+                    dispatch(controlsSlice.actions.getCurrentSongIndex(listSongs.length - 1));
+                }
             }
         }
     };
@@ -54,7 +75,11 @@ export default function Player({ listSongs, currentSongIndex }) {
         <div className="player">
             <div className="controls-main">
                 <div className="controls-top-item">
-                    <div className="control-btn">
+                    <div
+                        style={shuffle ? { color: '#3460f5' } : { color: '' }}
+                        className="control-btn"
+                        onClick={handleShuffle}
+                    >
                         <ion-icon name="shuffle-outline"></ion-icon>
                     </div>
                 </div>
@@ -150,18 +175,19 @@ export default function Player({ listSongs, currentSongIndex }) {
                     )}
                 </span>
                 <div className="progress-area">
+                    <div className="progress-bar-line" style={{ width: durationLine + '%' }}></div>
                     <input
                         onChange={handleFastForward}
                         id="progress-bar"
                         className="progress-bar"
                         type="range"
-                        value={rangeValue}
                         step="0"
                         min="0"
                         max="100"
                     />
                     <audio
                         onTimeUpdate={onPlaying}
+                        onEnded={onEnded}
                         ref={audioRef}
                         id="main-audio"
                         src={linkAudio}
