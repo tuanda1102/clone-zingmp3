@@ -15,8 +15,8 @@ export default function WeekChart() {
     }, [weekBoxData]);
 
     const RenderBoxChart = () => {
-        return arrChartWeek.map((box, index) => {
-            return <WeekChartBox key={index} data={box} />;
+        return arrChartWeek.map((box) => {
+            return <WeekChartBox key={box.playlistId} data={box} />;
         });
     };
 

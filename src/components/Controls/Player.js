@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { linkAudioSelector, statusAudioSelector } from 'src/redux/selectors/controlsSelector';
 import { controlsSlice, playSong } from './controlsSlice';
@@ -8,9 +8,16 @@ export default function Player({ listSongs, currentSongIndex }) {
     const linkAudio = useSelector(linkAudioSelector);
     const statusLoading = useSelector(statusAudioSelector);
     const audioRef = useRef(null);
+    const progressLine = useRef(null);
     const [isPlaying, setIsPlay] = useState(true);
-    const [durationLine, setDurationLine] = useState(0);
     const [shuffle, setShuffle] = useState(false);
+    const [totalTime, setTotalTime] = useState(0);
+    const [currentTime, setCurrentTime] = useState(0);
+
+    useEffect(() => {
+        // when pause music, but skip song => music is playing
+        setIsPlay(true);
+    }, [linkAudio]);
 
     const convertSecondsToMinutes = (string, pad, length) => {
         return (new Array(length + 1).join(pad) + string).slice(-length);
@@ -25,7 +32,9 @@ export default function Player({ listSongs, currentSongIndex }) {
     // range line run
     const onPlaying = () => {
         if (audioRef.current?.duration) {
-            setDurationLine((audioRef.current?.currentTime * 100) / audioRef.current?.duration);
+            progressLine.current.style.width = (audioRef.current?.currentTime * 100) / audioRef.current?.duration + '%';
+            setTotalTime(audioRef.current?.duration);
+            setCurrentTime(audioRef.current?.currentTime);
         }
     };
 
@@ -166,16 +175,15 @@ export default function Player({ listSongs, currentSongIndex }) {
             </div>
             <div className="time-progress">
                 <span className="time-block">
-                    {convertSecondsToMinutes(Math.floor(Math.floor(audioRef.current?.currentTime) / 60), '0', 2)}:
+                    {convertSecondsToMinutes(Math.floor(Math.floor(currentTime) / 60), '0', 2)}:
                     {convertSecondsToMinutes(
-                        Math.floor(audioRef.current?.currentTime) -
-                            Math.floor(Math.floor(audioRef.current?.currentTime) / 60) * 60,
+                        Math.floor(currentTime) - Math.floor(Math.floor(currentTime) / 60) * 60,
                         '0',
                         2,
                     )}
                 </span>
                 <div className="progress-area">
-                    <div className="progress-bar-line" style={{ width: durationLine + '%' }}></div>
+                    <div ref={progressLine} className="progress-bar-line"></div>
                     <input
                         onChange={handleFastForward}
                         id="progress-bar"
@@ -196,13 +204,8 @@ export default function Player({ listSongs, currentSongIndex }) {
                     ></audio>
                 </div>
                 <span className="time-block">
-                    {convertSecondsToMinutes(Math.floor(Math.floor(audioRef.current?.duration) / 60), '0', 2)}:
-                    {convertSecondsToMinutes(
-                        Math.floor(audioRef.current?.duration) -
-                            Math.floor(Math.floor(audioRef.current?.duration) / 60) * 60,
-                        0,
-                        2,
-                    )}
+                    {convertSecondsToMinutes(Math.floor(Math.floor(totalTime) / 60), '0', 2)}:
+                    {convertSecondsToMinutes(Math.floor(totalTime) - Math.floor(Math.floor(totalTime) / 60) * 60, 0, 2)}
                 </span>
             </div>
         </div>
