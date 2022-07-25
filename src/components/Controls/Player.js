@@ -11,6 +11,7 @@ export default function Player({ listSongs, currentSongIndex }) {
     const progressLine = useRef(null);
     const [isPlaying, setIsPlay] = useState(true);
     const [shuffle, setShuffle] = useState(false);
+    const [repeatSong, setRepeatSong] = useState(false);
     const [totalTime, setTotalTime] = useState(0);
     const [currentTime, setCurrentTime] = useState(0);
 
@@ -40,7 +41,12 @@ export default function Player({ listSongs, currentSongIndex }) {
 
     // handle when music ended
     const onEnded = () => {
-        skipSong();
+        if (repeatSong) {
+            dispatch(playSong(listSongs[currentSongIndex].encodeId));
+            dispatch(controlsSlice.actions.getCurrentSongIndex(currentSongIndex));
+        } else {
+            skipSong();
+        }
     };
 
     // handle when click line range =>> fast-forward music
@@ -54,29 +60,41 @@ export default function Player({ listSongs, currentSongIndex }) {
         setShuffle(!shuffle);
     };
 
+    // handle repeat song
+    const handleRepeatSong = () => {
+        setRepeatSong(!repeatSong);
+    };
+
+    const skipSongForwards = (forwards, numSkip) => {
+        if (forwards) {
+            if (currentSongIndex + numSkip < listSongs.length) {
+                dispatch(playSong(listSongs[currentSongIndex + numSkip].encodeId));
+                dispatch(controlsSlice.actions.getCurrentSongIndex(currentSongIndex + numSkip));
+            } else {
+                dispatch(playSong(listSongs[0].encodeId));
+                dispatch(controlsSlice.actions.getCurrentSongIndex(0));
+            }
+        } else {
+            if (currentSongIndex - numSkip >= 0) {
+                dispatch(playSong(listSongs[currentSongIndex - numSkip].encodeId));
+                dispatch(controlsSlice.actions.getCurrentSongIndex(currentSongIndex - numSkip));
+            } else {
+                dispatch(playSong(listSongs[listSongs.length - numSkip].encodeId));
+                dispatch(controlsSlice.actions.getCurrentSongIndex(listSongs.length - numSkip));
+            }
+        }
+    };
+
     // skip song
     const skipSong = (forwards = true) => {
         if (shuffle) {
-            const randomNum = listSongs[Math.floor(Math.random() * listSongs.length)];
-            console.log(randomNum);
+            const randomSong = listSongs[Math.floor(Math.random() * listSongs.length)];
+            dispatch(playSong(randomSong.encodeId));
+            dispatch(controlsSlice.actions.getCurrentSongIndex(listSongs.indexOf(randomSong)));
+        } else if (repeatSong) {
+            skipSongForwards(forwards, 1);
         } else {
-            if (forwards) {
-                if (currentSongIndex + 1 < listSongs.length) {
-                    dispatch(playSong(listSongs[currentSongIndex + 1].encodeId));
-                    dispatch(controlsSlice.actions.getCurrentSongIndex(currentSongIndex + 1));
-                } else {
-                    dispatch(playSong(listSongs[0].encodeId));
-                    dispatch(controlsSlice.actions.getCurrentSongIndex(0));
-                }
-            } else {
-                if (currentSongIndex - 1 >= 0) {
-                    dispatch(playSong(listSongs[currentSongIndex - 1].encodeId));
-                    dispatch(controlsSlice.actions.getCurrentSongIndex(currentSongIndex - 1));
-                } else {
-                    dispatch(playSong(listSongs[listSongs.length - 1].encodeId));
-                    dispatch(controlsSlice.actions.getCurrentSongIndex(listSongs.length - 1));
-                }
-            }
+            skipSongForwards(forwards, 1);
         }
     };
 
@@ -168,7 +186,11 @@ export default function Player({ listSongs, currentSongIndex }) {
                     </div>
                 </div>
                 <div className="controls-top-item">
-                    <div className="control-btn">
+                    <div
+                        className="control-btn"
+                        onClick={() => handleRepeatSong()}
+                        style={repeatSong ? { color: '#3460f5' } : { color: '' }}
+                    >
                         <ion-icon name="repeat-outline"></ion-icon>
                     </div>
                 </div>
