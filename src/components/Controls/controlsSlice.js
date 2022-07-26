@@ -9,6 +9,7 @@ export const controlsSlice = createSlice({
         data: {
             linkAudio: {},
             currentSongIndex: 0,
+            song: {},
             controls: {
                 random: false,
                 play: false,
@@ -19,6 +20,9 @@ export const controlsSlice = createSlice({
     reducers: {
         getCurrentSongIndex: (state, actions) => {
             state.data.currentSongIndex = actions.payload;
+        },
+        getSong: (state, actions) => {
+            state.data.song = actions.payload;
         },
     },
     extraReducers: (builder) => {

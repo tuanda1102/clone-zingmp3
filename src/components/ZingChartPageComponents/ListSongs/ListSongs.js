@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Button } from 'src/components/StyledComponents/Button';
 import { listSongsSelector } from 'src/redux/selectors/zingChartPageSelector';
-import SongItem from '../SongItem/SongItem';
+import SongItem from 'src/components/SongItem/SongItem';
 
 export default function ListSongs() {
     const [visible, setVisible] = useState(10);
     const listSongs = useSelector(listSongsSelector);
+    const buttonLoadMoreTopRef = useRef(null);
 
     const handleLoadMore = () => {
+        buttonLoadMoreTopRef.current.style.display = 'none';
         setVisible(listSongs.length);
     };
 
@@ -20,7 +22,9 @@ export default function ListSongs() {
         <div className="list">
             {renderListSongs}
             <div className="loadmore-btn">
-                <Button onClick={handleLoadMore}>Xem Top 100</Button>
+                <Button ref={buttonLoadMoreTopRef} onClick={handleLoadMore}>
+                    Xem Top 100
+                </Button>
             </div>
         </div>
     );

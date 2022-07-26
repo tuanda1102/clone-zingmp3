@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, CircleButton } from 'src/components/StyledComponents/Button';
-import SongItem from '../SongItem/SongItem';
+import SongItem from 'src/components/SongItem/SongItem';
 
 export default function WeekChartBox({ data }) {
     const RenderListSongs = () => {

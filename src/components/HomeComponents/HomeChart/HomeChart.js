@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import SongItem from 'src/components/SongItem/SongItem';
 import { Button } from 'src/components/StyledComponents/Button';
 import ZingChart from 'src/components/ZingChart/ZingChart';
-import SongItem from 'src/components/ZingChartPageComponents/SongItem/SongItem';
 import { listSongsSelector } from 'src/redux/selectors/zingChartPageSelector';
 
 export default function HomeChart() {

@@ -68,17 +68,21 @@ export default function Player({ listSongs, currentSongIndex }) {
     const skipSongForwards = (forwards, numSkip) => {
         if (forwards) {
             if (currentSongIndex + numSkip < listSongs.length) {
+                dispatch(controlsSlice.actions.getSong(listSongs[currentSongIndex + numSkip]));
                 dispatch(playSong(listSongs[currentSongIndex + numSkip].encodeId));
                 dispatch(controlsSlice.actions.getCurrentSongIndex(currentSongIndex + numSkip));
             } else {
+                dispatch(controlsSlice.actions.getSong(listSongs[0]));
                 dispatch(playSong(listSongs[0].encodeId));
                 dispatch(controlsSlice.actions.getCurrentSongIndex(0));
             }
         } else {
             if (currentSongIndex - numSkip >= 0) {
+                dispatch(controlsSlice.actions.getSong(listSongs[currentSongIndex - numSkip]));
                 dispatch(playSong(listSongs[currentSongIndex - numSkip].encodeId));
                 dispatch(controlsSlice.actions.getCurrentSongIndex(currentSongIndex - numSkip));
             } else {
+                dispatch(controlsSlice.actions.getSong(listSongs[listSongs.length - numSkip]));
                 dispatch(playSong(listSongs[listSongs.length - numSkip].encodeId));
                 dispatch(controlsSlice.actions.getCurrentSongIndex(listSongs.length - numSkip));
             }
@@ -89,6 +93,7 @@ export default function Player({ listSongs, currentSongIndex }) {
     const skipSong = (forwards = true) => {
         if (shuffle) {
             const randomSong = listSongs[Math.floor(Math.random() * listSongs.length)];
+            dispatch(controlsSlice.actions.getSong(randomSong));
             dispatch(playSong(randomSong.encodeId));
             dispatch(controlsSlice.actions.getCurrentSongIndex(listSongs.indexOf(randomSong)));
         } else if (repeatSong) {

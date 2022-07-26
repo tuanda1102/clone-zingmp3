@@ -6,12 +6,12 @@ export default function Details({ song }) {
             <div className="media">
                 <div className="media-left">
                     <a href="/" className="media-thumb">
-                        <img src={song.thumbnailM} alt={song.title} />
+                        <img src={song?.thumbnailM} alt={song?.title} />
                     </a>
                     <div className="media-content">
-                        <div className="media-content-title">{song.title}</div>
+                        <div className="media-content-title">{song?.title}</div>
                         <a href="/" className="media-content-subtitle">
-                            {song.artistsNames}
+                            {song?.artistsNames}
                         </a>
                     </div>
                 </div>

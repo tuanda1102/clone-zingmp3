@@ -60,14 +60,6 @@
     .home-row-item {
         margin-top: $mg-2;
     }
-    .new-release-container {
-        .new-release-slider {
-            margin: 0 $mg-10;
-            .card-item {
-                padding: 0 $pd-7;
-            }
-        }
-    }
     .card-item {
         .card-item-top {
             .card-img {
@@ -264,6 +256,141 @@
                     }
                 }
             }
+        }
+    }
+}
+
+.new-release {
+    .new-release-header {
+        @include flexCenter;
+    }
+    .new-release-btn-block {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .new-release-btn {
+        text-align: center;
+        line-height: 100%;
+        padding: 6px 24px;
+        border-radius: 100px;
+        font-weight: 400;
+        font-size: 12px;
+        text-transform: uppercase;
+        margin: 0 15px 0 0;
+    }
+    .new-release-link {
+        display: flex;
+        align-items: center;
+        font-size: $fs-6;
+        text-decoration: none;
+        color: $color-gray-3;
+        font-weight: $fw-0;
+        .new-release-link-icon {
+            @include centerItemWithMargin;
+        }
+        &:hover {
+            color: $color-primary;
+        }
+    }
+    .chart-song-item {
+        border-bottom: none;
+        .media-left {
+            width: 100%;
+        }
+        .media-content {
+            display: none;
+        }
+        .media-right {
+            display: none;
+        }
+    }
+    .new-release-content {
+        min-height: 200px;
+    }
+    .album {
+        height: 90px;
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 4px;
+        overflow: hidden;
+        &:hover {
+            background-color: $color-bg-dark-1;
+            .album-thumb-action {
+                transform: translateX(-20px);
+            }
+            .album-thumb-disk {
+                transform: rotate(90deg);
+            }
+        }
+    }
+    .album-thumb {
+        position: relative;
+        width: 70px;
+        height: 70px;
+        margin: 0 15px 0 20px;
+        img {
+            height: auto;
+            width: 100%;
+            object-fit: cover;
+        }
+        .album-thumb-action {
+            position: absolute;
+            width: 100%;
+            margin-right: 10px;
+            z-index: 2;
+            transform: translateX(-10px);
+            transition: transform 0.3s linear;
+            figure {
+                margin: 0;
+            }
+            .album-thumb-image {
+                overflow: hidden;
+                border-radius: 4px;
+            }
+        }
+        .album-thumb-disk {
+            transition: transform 0.3s linear;
+            margin: 0;
+        }
+    }
+
+    .album-thumb-info {
+        h4 {
+            margin: 0;
+        }
+        .info-title {
+            @include lineClamp(1);
+            color: $color-white-0;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 20px;
+            margin: 0;
+            width: 100%;
+            text-overflow: clip;
+            text-transform: none;
+            display: flex;
+            align-items: center;
+            flex: 1;
+            margin-bottom: 4px;
+        }
+        .info-desc {
+            @include lineClamp(1);
+            margin-left: -2px;
+            color: $color-gray-4;
+            a {
+                text-decoration: none;
+                padding-left: 2px;
+                color: $color-gray-4;
+                &:hover {
+                    color: $color-primary;
+                }
+            }
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 18px;
         }
     }
 }

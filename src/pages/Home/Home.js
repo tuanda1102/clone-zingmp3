@@ -37,10 +37,10 @@ export default function Home() {
                 <div className="home">
                     <Banner />
                     <TodayChoice />
-                    <NewMusics />
-                    <HomeChart height="320px" />
-                    <HomeTop />
                     <NewRelease />
+                    {/* <NewMusics /> */}
+                    <HomeChart height="320px" />
+                    {/* <HomeTop /> */}
                     <HomeFooter />
                 </div>
             </div>
