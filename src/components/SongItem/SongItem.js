@@ -17,13 +17,20 @@ export default function SongItem({ song, rank, withContentAlbum, index }) {
     };
 
     const loadSongControls = () => {
-        dispatch(controlsSlice.actions.getSong(song));
-        dispatch(playSong(song.encodeId));
-        dispatch(controlsSlice.actions.getCurrentSongIndex(index));
+        if (!streamingStatus) {
+            dispatch(controlsSlice.actions.getSong(song));
+            dispatch(playSong(song.encodeId));
+            dispatch(controlsSlice.actions.getCurrentSongIndex(index));
+        }
     };
 
     return (
-        <div className="chart-song-item" dataset={index} onClick={loadSongControls}>
+        <div
+            className="chart-song-item"
+            data-bs-toggle={streamingStatus ? 'modal' : ''}
+            data-bs-target={streamingStatus ? '#exampleModal' : ''}
+            onClick={loadSongControls}
+        >
             <div className="item-media">
                 <div className="media-left">
                     {rank ? (

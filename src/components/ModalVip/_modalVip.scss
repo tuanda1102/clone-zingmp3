@@ -1,0 +1,42 @@
+.modal-vip {
+    height: 180px;
+    width: 350px;
+    .modal-content {
+        padding: 20px;
+        background-color: $color-bg-dark-0;
+        position: relative;
+    }
+    .modal-vip-header {
+        text-align: center;
+        color: $color-white-0;
+        .modal-vip-title {
+            font-size: 18px;
+            margin: 10px 0;
+            font-weight: $fw-0;
+        }
+    }
+    .modal-vip-close {
+        color: $color-white-0;
+        font-size: 26px;
+        padding: 5;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: transparent;
+        border: none;
+        outline: none;
+    }
+    .modal-vip-body {
+        color: $color-gray-3;
+        text-align: center;
+    }
+    .modal-vip-btn {
+        margin-top: 25px;
+        text-decoration: none;
+        text-align: center;
+        color: $color-black-0;
+        background-color: yellow;
+        padding: 6px 0;
+        border-radius: 20px;
+    }
+}

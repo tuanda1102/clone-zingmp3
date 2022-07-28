@@ -6,11 +6,13 @@ import Home from './pages/Home/Home';
 import MyMusic from './pages/MyMusic/MyMusic';
 import ZingChartPage from './pages/ZingChartPage/ZingChartPage';
 import Controls from './components/Controls/Controls';
+import ModalVip from './components/ModalVip/ModalVip';
 
 function App() {
     return (
         <BrowserRouter>
             <div className="App">
+                <ModalVip />
                 <Sidebar />
                 <Header />
                 <div className="contents">
