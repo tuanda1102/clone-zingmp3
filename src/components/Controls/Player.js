@@ -210,7 +210,9 @@ export default function Player({ listSongs, currentSongIndex }) {
                     )}
                 </span>
                 <div className="progress-area">
-                    <div ref={progressLine} className="progress-bar-line"></div>
+                    <div ref={progressLine} className="progress-bar-line">
+                        <span className="progress-bar-line-point"></span>
+                    </div>
                     <input
                         onChange={handleFastForward}
                         id="progress-bar"

@@ -55,11 +55,17 @@
         }
     }
     .sidebar-footer {
+        width: 240px;
         position: fixed;
         height: $height-2;
         bottom: $height-1;
         background-color: $color-bg-dark-1;
         z-index: 10;
         @extend .sidebar-item;
+        .sidebar-item {
+            width: 100%;
+            padding: 10px 0;
+            border-top: 1px solid $color-gray-4;
+        }
     }
 }

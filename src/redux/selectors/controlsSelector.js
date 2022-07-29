@@ -13,3 +13,7 @@ export const currentSongIndexSelector = (state) => {
 export const getSongSelector = (state) => {
     return state.controls.data.song;
 };
+
+export const controlsHideSelector = (state) => {
+    return state.controls.controlsHide;
+};

@@ -7,22 +7,25 @@ import MyMusic from './pages/MyMusic/MyMusic';
 import ZingChartPage from './pages/ZingChartPage/ZingChartPage';
 import Controls from './components/Controls/Controls';
 import ModalVip from './components/ModalVip/ModalVip';
+import { useSelector } from 'react-redux';
+import { controlsHideSelector } from './redux/selectors/controlsSelector';
 
 function App() {
+    const controlsHide = useSelector(controlsHideSelector);
     return (
         <BrowserRouter>
             <div className="App">
                 <ModalVip />
-                <Sidebar />
+                <Sidebar controlsHide={controlsHide} />
                 <Header />
-                <div className="contents">
+                <div style={controlsHide ? { paddingBottom: '0' } : {}} className="contents">
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/mymusic" element={<MyMusic />} />
                         <Route path="/zingchart" element={<ZingChartPage />} />
                     </Routes>
                 </div>
-                <Controls />
+                <Controls controlsHide={controlsHide} />
             </div>
         </BrowserRouter>
     );

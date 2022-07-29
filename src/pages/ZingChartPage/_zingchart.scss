@@ -28,7 +28,6 @@
 
 .week-chart {
     position: relative;
-    margin: $pd-6 0;
     padding: $pd-6 $pd-8 0 $pd-8;
     color: $color-white-0;
     @include blurBgChart('https://zjs.zmdcdn.me/zmp3-desktop/releases/v1.7.1/static/media/week-chart-bg.edf332e5.jpg');
@@ -36,7 +35,7 @@
 
 .wrapper-week-chart {
     position: relative;
-    padding-bottom: 90px;
+    padding: 30px 0;
     .week-heading {
         margin: 0 0 $mg-2;
         a {

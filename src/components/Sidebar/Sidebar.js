@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Sidebar() {
+export default function Sidebar({ controlsHide }) {
     return (
         <Fragment>
-            <div className="sidebar">
+            <div style={controlsHide ? { height: '100%' } : { height: 'calc(100vh - 90px)' }} className="sidebar">
                 <Link to="/" className="sidebar_header">
                     <img
                         className="logo"
@@ -150,7 +150,7 @@ export default function Sidebar() {
                 </div>
 
                 {/* Footer */}
-                <div className="sidebar-footer">
+                <div style={controlsHide ? { bottom: '0' } : {}} className="sidebar-footer">
                     <div className="sidebar-item">
                         <a className="sidebar-item-link" href="/">
                             <i className="sidebar-icon">

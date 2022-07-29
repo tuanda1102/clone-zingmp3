@@ -9,6 +9,7 @@
     padding: $pd-4 $pd-2;
     color: $color-white-0;
     z-index: 99999999999999;
+    display: none;
     .details {
         width: $width-2;
         .media {
@@ -125,12 +126,18 @@
 
 .progress-area {
     margin: 0 20px;
-    height: 6px;
+    height: 3px;
     width: 100%;
     border-radius: 50px;
     background: $color-bg-dark-1;
     cursor: pointer;
     position: relative;
+    &:hover {
+        height: 6px;
+        .progress-bar-line .progress-bar-line-point {
+            display: block;
+        }
+    }
     .progress-bar-line {
         height: inherit;
         width: 0;
@@ -151,6 +158,24 @@
             transform: translateY(-50%);
             background: inherit;
             transition: opacity 0.2s ease;
+        }
+        &:hover {
+            .progress-bar-line-point {
+                display: block;
+            }
+        }
+        .progress-bar-line-point {
+            content: '';
+            width: 14px;
+            height: 14px;
+            position: absolute;
+            background-color: $color-white-0;
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+            right: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 50%;
+            display: none;
         }
     }
     .progress-bar {

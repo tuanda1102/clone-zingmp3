@@ -6,6 +6,7 @@ export const controlsSlice = createSlice({
     name: 'controls',
     initialState: {
         status: 'idle',
+        controlsHide: true,
         data: {
             linkAudio: {},
             currentSongIndex: 0,
@@ -32,6 +33,7 @@ export const controlsSlice = createSlice({
             })
             .addCase(playSong.fulfilled, (state, actions) => {
                 state.status = 'idle';
+                state.controlsHide = false;
                 state.data.linkAudio = Object.values(actions.payload)[0];
             });
     },
