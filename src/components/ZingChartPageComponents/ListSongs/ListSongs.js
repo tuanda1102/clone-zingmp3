@@ -13,7 +13,6 @@ export default function ListSongs() {
         buttonLoadMoreTopRef.current.style.display = 'none';
         setVisible(listSongs.length);
     };
-
     const renderListSongs = listSongs?.slice(0, visible).map((song, index) => {
         return <SongItem withContentAlbum index={index} key={song.encodeId} song={song} rank={index + 1} />;
     });

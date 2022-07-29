@@ -25,17 +25,24 @@
         flex-direction: column;
         justify-content: space-between;
         .nav-menu {
-            border-bottom: 1px solid $color-blue-3;
             padding-bottom: $pd-4;
             .sidebar-item {
                 @extend .sidebar-item;
             }
         }
         .nav-divide {
+            position: relative;
             padding: $pd-4 0;
             height: 100%;
             overflow: hidden;
-            border-bottom: 1px solid $color-blue-3;
+            &::before {
+                content: '';
+                border-top: 1px solid $color-hover-btn;
+                position: absolute;
+                left: 20px;
+                right: 20px;
+                top: 0px;
+            }
             .sidebar-item {
                 @extend .sidebar-item;
             }
@@ -68,4 +75,8 @@
             border-top: 1px solid $color-gray-4;
         }
     }
+}
+
+.sidebar-item.active {
+    background-color: $color-hover-btn;
 }

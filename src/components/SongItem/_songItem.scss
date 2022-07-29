@@ -4,9 +4,6 @@
     &:hover {
         background-color: $color-hover-btn;
     }
-    ~ .active {
-        background-color: $color-hover-btn;
-    }
     .item-media {
         height: 100%;
         padding: 10px;
@@ -104,4 +101,8 @@
             font-size: $fs-6;
         }
     }
+}
+
+.chart-song-item.active {
+    background-color: $color-hover-btn;
 }

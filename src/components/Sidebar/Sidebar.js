@@ -1,9 +1,22 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Sidebar({ controlsHide }) {
+    // Handle click item sidebar => change active item
+    useEffect(() => {
+        const sidebarList = document.querySelectorAll('.sidebar-item');
+        Array.from(sidebarList).forEach((item) => {
+            item.onclick = () => {
+                let itemActive = document.getElementsByClassName('active')[0];
+                itemActive.classList.remove('active');
+                item.classList.add('active');
+            };
+        });
+    });
+
     return (
-        <Fragment>
+        <>
             <div style={controlsHide ? { height: '100%' } : { height: 'calc(100vh - 90px)' }} className="sidebar">
                 <Link to="/" className="sidebar_header">
                     <img
@@ -162,6 +175,6 @@ export default function Sidebar({ controlsHide }) {
                     </div>
                 </div>
             </div>
-        </Fragment>
+        </>
     );
 }

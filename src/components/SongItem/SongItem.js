@@ -8,6 +8,21 @@ export default function SongItem({ song, rank, withContentAlbum, index }) {
     const [streamingStatus, setStreamingStatus] = useState(true);
 
     useEffect(() => {
+        const chartSongItems = document.querySelectorAll('.chart-song-item');
+        Array.from(chartSongItems).forEach((chartSongItem) => {
+            chartSongItem.onclick = () => {
+                const songActiveItems = document.querySelectorAll('.chart-song-item.active');
+                if (songActiveItems !== undefined) {
+                    songActiveItems.forEach((chartSongItem) => {
+                        chartSongItem.classList.remove('active');
+                    });
+                }
+                chartSongItem.classList.add('active');
+            };
+        });
+    }, []);
+
+    useEffect(() => {
         // check VIP song
         song?.streamingStatus === 1 ? setStreamingStatus(false) : setStreamingStatus(true);
     }, []);
